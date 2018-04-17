@@ -1,23 +1,17 @@
-entity Person {
-	age Integer
-}
+entity Person {}
 
 entity Nap {
     duration Integer required,
     rating Integer required min(0) max(10),
-    start LocalDate,
-    end LocalDate,
-    exercise Boolean,
-    dark Boolean
+    day DayType
 }
 
-entity Country {
-	name String
+enum DayType {
+	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY
 }
 
 relationship OneToOne {
-	Person{user} to User,
-    Person{country} to Country
+	Person{user} to User
 }
 
 relationship OneToMany {
