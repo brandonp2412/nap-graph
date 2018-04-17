@@ -1,0 +1,27 @@
+entity Person {
+	age Integer
+}
+
+entity Nap {
+    duration Integer required,
+    rating Integer required min(0) max(10),
+    start LocalDate,
+    end LocalDate,
+    exercise Boolean,
+    dark Boolean
+}
+
+entity Country {
+	name String
+}
+
+relationship OneToOne {
+	Person{user} to User,
+    Person{country} to Country
+}
+
+relationship OneToMany {
+	Person{naps} to Nap
+}
+
+paginate Sleep with infinite-scroll
