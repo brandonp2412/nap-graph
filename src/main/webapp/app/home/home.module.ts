@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 import { NapChartSharedModule } from '../shared';
 
 import { HOME_ROUTE, HomeComponent } from './';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
     imports: [
         NapChartSharedModule,
-        RouterModule.forChild([ HOME_ROUTE ])
+        RouterModule.forChild([ HOME_ROUTE ]),
+        ChartModule
     ],
     declarations: [
         HomeComponent,

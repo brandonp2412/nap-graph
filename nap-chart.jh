@@ -3,11 +3,12 @@ entity Person {}
 entity Nap {
     duration Integer required,
     rating Integer required min(0) max(10),
-    day DayType
+    day DayType,
+    exercise Boolean
 }
 
 enum DayType {
-	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY
+	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
 }
 
 relationship OneToOne {
@@ -18,4 +19,4 @@ relationship OneToMany {
 	Person{naps} to Nap
 }
 
-paginate Sleep with infinite-scroll
+paginate Nap with infinite-scroll

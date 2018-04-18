@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>Naps</span>
+        <button class="btn btn-primary float-right jh-create-entity create-nap" [routerLink]="['/', { outlets: { popup: ['nap-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Nap
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="naps">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="duration"><span>Duration</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rating"><span>Rating</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="day"><span>Day</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="exercise"><span>Exercise</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="person.id"><span>Person</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let nap of naps ;trackBy: trackId">
+                <td><a [routerLink]="['../nap', nap.id ]">{{nap.id}}</a></td>
+                <td>{{nap.duration}}</td>
+                <td>{{nap.rating}}</td>
+                <td>{{nap.day}}</td>
+                <td>{{nap.exercise}}</td>
+                <td>
+                    <div *ngIf="nap.person">
+                        <a [routerLink]="['../person', nap.person?.id ]" >{{nap.person?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../nap', nap.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'nap/'+ nap.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'nap/'+ nap.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
