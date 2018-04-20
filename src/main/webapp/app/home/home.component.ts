@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
                     borderColor: '#4bc0c0'
                 }
             ]
-        }
+        };
     }
 
     private getDurationByRating() {
