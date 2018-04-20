@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { Principal } from '../auth/principal.service';
 import { AuthServerProvider } from '../auth/auth-jwt.service';
+import {JhiEventManager} from "ng-jhipster";
 
 @Injectable()
 export class LoginService {
 
     constructor(
+        private eventManager: JhiEventManager,
         private principal: Principal,
         private authServerProvider: AuthServerProvider
     ) {}
@@ -35,5 +37,10 @@ export class LoginService {
     logout() {
         this.authServerProvider.logout().subscribe();
         this.principal.authenticate(null);
+
+        this.eventManager.broadcast({
+            name: 'logoutSuccess',
+            content: 'Sending Logout Success'
+        });
     }
 }

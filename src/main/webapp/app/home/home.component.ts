@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
         });
         this.setData();
         this.registerAuthenticationSuccess();
+        this.registerLogoutSuccess();
         this.setDayByDuration();
         this.setDurationByRating();
     }
@@ -125,5 +126,11 @@ export class HomeComponent implements OnInit {
 
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    private registerLogoutSuccess() {
+        this.eventManager.subscribe('logoutSuccess', (message) => {
+            this.naps = SAMPLE_DATA;
+        });
     }
 }
