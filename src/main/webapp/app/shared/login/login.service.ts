@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Principal } from '../auth/principal.service';
 import { AuthServerProvider } from '../auth/auth-jwt.service';
-import {JhiEventManager} from "ng-jhipster";
+import {JhiEventManager} from 'ng-jhipster';
 
 @Injectable()
 export class LoginService {
