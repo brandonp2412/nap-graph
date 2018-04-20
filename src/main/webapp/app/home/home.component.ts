@@ -3,7 +3,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
-import { Nap, NapService } from '../entities/nap';
+import { NapService } from '../entities/nap';
 import { SAMPLE_DATA } from './home.sample.data';
 
 @Component({
