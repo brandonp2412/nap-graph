@@ -16,7 +16,7 @@ describe('account', () => {
     });
 
     it('should fail to login with bad password', () => {
-        const expect1 = /Welcome, Java Hipster!/;
+        const expect1 = /Welcome, Sleepy Head!/;
         element.all(by.css('h1')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
