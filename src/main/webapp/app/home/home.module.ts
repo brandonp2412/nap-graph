@@ -9,8 +9,7 @@ import {ChartModule} from 'primeng/chart';
 @NgModule({
     imports: [
         NapChartSharedModule,
-        RouterModule.forChild([ HOME_ROUTE ]),
-        ChartModule
+        RouterModule.forChild([ HOME_ROUTE ])
     ],
     declarations: [
         HomeComponent,

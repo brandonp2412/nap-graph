@@ -1,16 +1,24 @@
-<h1>Welcome, Sleepy Head!</h1>
-
-
-<div *ngIf="!isAuthenticated()">
-    <h2 align="center">My Dashboard</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <p-chart type="line" [data]="dayByDuration"></p-chart>
-        </div>
-        <div class="col-md-6">
-            <p-chart type="line" [data]="durationByRating"></p-chart>
+<div *ngIf="isAuthenticated()">
+    <h1 align="center">Welcome, Sleepy Head!</h1>
+    <div align="center">
+        <div class="row btn btn-group" align="center">
+            <div class="col-sm-4">
+                <a class="btn btn-primary">See my charts</a>
+            </div>
+            <div class="col-sm-4">
+                <a class="btn btn-secondary">Edit my data</a>
+            </div>
+            <div class="col-sm-4">
+                <a class="btn btn-primary">Split-screen</a>
+            </div>
         </div>
     </div>
-    <br>
-    <h2 align="center"><a>Modify my Data</a></h2>
+</div>
+
+<div *ngIf="!isAuthenticated()">
+    <div class="alert alert-warning">
+        <span>If you want to </span>
+        <a class="alert-link" (click)="login()">sign in</a> then
+        <a class="alert-link" routerLink="register">Register a new account</a>
+    </div>
 </div>

@@ -1,12 +1,12 @@
 package com.brandon.napchart.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
+import com.brandon.napchart.domain.DayDuration;
 import com.brandon.napchart.domain.Nap;
-
+import com.brandon.napchart.domain.enumeration.DayType;
+import com.brandon.napchart.repository.DayDurationRepository;
 import com.brandon.napchart.repository.NapRepository;
-import com.brandon.napchart.web.rest.errors.BadRequestAlertException;
-import com.brandon.napchart.web.rest.util.HeaderUtil;
 import com.brandon.napchart.web.rest.util.PaginationUtil;
+import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -29,100 +25,32 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
-public class NapResource {
+public class DayDurationResource {
 
-    private final Logger log = LoggerFactory.getLogger(NapResource.class);
+    private final Logger log = LoggerFactory.getLogger(DayDurationResource.class);
 
-    private static final String ENTITY_NAME = "nap";
+    private static final String ENTITY_NAME = "dayDuration";
 
-    private final NapRepository napRepository;
+    private final DayDurationRepository dayDurationRepository;
 
-    public NapResource(NapRepository napRepository) {
-        this.napRepository = napRepository;
+    public DayDurationResource(DayDurationRepository dayDurationRepository) {
+        this.dayDurationRepository = dayDurationRepository;
     }
 
-    /**
-     * POST  /naps : Create a new nap.
-     *
-     * @param nap the nap to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new nap, or with status 400 (Bad Request) if the nap has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PostMapping("/naps")
+    @GetMapping("/day-durations")
     @Timed
-    public ResponseEntity<Nap> createNap(@Valid @RequestBody Nap nap) throws URISyntaxException {
-        log.debug("REST request to save Nap : {}", nap);
-        if (nap.getId() != null) {
-            throw new BadRequestAlertException("A new nap cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        Nap result = napRepository.save(nap);
-        return ResponseEntity.created(new URI("/api/naps/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
-
-    /**
-     * PUT  /naps : Updates an existing nap.
-     *
-     * @param nap the nap to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated nap,
-     * or with status 400 (Bad Request) if the nap is not valid,
-     * or with status 500 (Internal Server Error) if the nap couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/naps")
-    @Timed
-    public ResponseEntity<Nap> updateNap(@Valid @RequestBody Nap nap) throws URISyntaxException {
-        log.debug("REST request to update Nap : {}", nap);
-        if (nap.getId() == null) {
-            return createNap(nap);
-        }
-        Nap result = napRepository.save(nap);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, nap.getId().toString()))
-            .body(result);
-    }
-
-    /**
-     * GET  /naps : get all the naps.
-     *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of naps in body
-     */
-    @GetMapping("/naps")
-    @Timed
-    public ResponseEntity<List<Nap>> getAllNaps(Pageable pageable) {
-        log.debug("REST request to get a page of Naps");
-        Page<Nap> page = napRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/naps");
+    public ResponseEntity<List<DayDuration>> getAllDayDurations(Pageable pageable) {
+        log.debug("REST request to get a page of DayDurations");
+        Page<DayDuration> page = dayDurationRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/day-durations");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    /**
-     * GET  /naps/:id : get the "id" nap.
-     *
-     * @param id the id of the nap to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the nap, or with status 404 (Not Found)
-     */
-    @GetMapping("/naps/{id}")
+    @GetMapping("/day-durations/{dayType}")
     @Timed
-    public ResponseEntity<Nap> getNap(@PathVariable Long id) {
-        log.debug("REST request to get Nap : {}", id);
-        Nap nap = napRepository.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(nap));
-    }
-
-    /**
-     * DELETE  /naps/:id : delete the "id" nap.
-     *
-     * @param id the id of the nap to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @DeleteMapping("/naps/{id}")
-    @Timed
-    public ResponseEntity<Void> deleteNap(@PathVariable Long id) {
-        log.debug("REST request to delete Nap : {}", id);
-        napRepository.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    public ResponseEntity<DayDuration> getNap(@PathVariable DayType dayType) {
+        log.debug("REST request to get DayDuration by day: {}", dayType);
+        DayDuration dayDuration = dayDurationRepository.findOne(dayType);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(dayDuration));
     }
 }

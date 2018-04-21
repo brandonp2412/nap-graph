@@ -20,6 +20,7 @@
     "chart.js": "^2.7.2",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",
+    "generator-jhipster-pages": "^2.0.4",
     "jquery": "3.2.1",
     "ng-jhipster": "0.4.0",
     "ngx-cookie": "2.0.1",

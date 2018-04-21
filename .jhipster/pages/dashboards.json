@@ -1,0 +1,11 @@
+{
+    "pages": [
+        {
+            "pageName": "charts",
+            "pageType": "loadAndSaveToServer",
+            "fields": []
+        }
+    ],
+    "pageSetGlyphIcon": "",
+    "changelogDate": "20180421013936"
+}
