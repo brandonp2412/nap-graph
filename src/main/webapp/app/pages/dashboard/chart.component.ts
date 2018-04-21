@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { Chart, DayByDuration, DurationByRating } from './chart.model';
+import { Chart, DayDuration, DurationRating } from './chart.model';
 import { ChartService } from './chart.service';
 import { Principal } from '../../shared';
 
@@ -16,8 +16,8 @@ export class ChartComponent implements OnInit {
     account: any;
     durationData: any;
     dayData: any;
-    durationByRating: DurationByRating[];
-    dayByDuration: DayByDuration[];
+    durationByRating: DurationRating[];
+    dayByDuration: DayDuration[];
 
     constructor(
         private chartService: ChartService,
@@ -33,28 +33,49 @@ export class ChartComponent implements OnInit {
             this.account = account;
         });
         this.chartService.getDayDurations().subscribe(
-            (res: HttpResponse<DayByDuration[]>) => this.onDaySuccess(res.body),
+            (res: HttpResponse<DayDuration[]>) => this.onDaySuccess(res.body),
             (res: HttpErrorResponse) => this.onError(res.message));
+        this.chartService.getDurationRatings().subscribe(
+            (res: HttpResponse<DurationRating[]>) => this.onDurationSuccess(res.body),
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    private setDayData(body) {
+    private setDayData(dayDurations) {
         this.dayData = {
-            labels: body.map((dayByDuration) => dayByDuration.day),
+            labels: dayDurations.map((dayByDuration) => dayByDuration.day),
             datasets: [{
                 label: 'Day by Duration (Hours)',
-                data: body.map((dayByDuration) => dayByDuration.totalDuration),
+                data: dayDurations.map((dayByDuration) => dayByDuration.totalDuration),
                 fill: false,
                 borderColor: '#4bc0c0'
             }]
         };
     }
 
-    private onDaySuccess(body: DayByDuration[]) {
-        this.dayByDuration = body;
-        this.setDayData(body);
+    private setDurationData(durationRatings) {
+        this.durationData = {
+            labels: durationRatings.map((durationByRating) => durationByRating.duration),
+            datasets: [{
+                label: 'Duration by Rating (out of 10)',
+                data: durationRatings.map((durationByRating) => durationByRating.averageRating),
+                fill: false,
+                borderColor: '#565656'
+            }]
+        };
+    }
+
+    private onDaySuccess(dayDurations: DayDuration[]) {
+        this.dayByDuration = dayDurations;
+        this.setDayData(dayDurations);
+    }
+
+    private onDurationSuccess(durationRatings: DurationRating[] | null) {
+        this.durationByRating = durationRatings;
+        this.setDurationData(durationRatings);
     }
 }

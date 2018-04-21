@@ -1,5 +1,12 @@
 <div>
     <h2><span>My Charts</span></h2>
     <hr>
-    <p-chart type="line" [data]="dayData"></p-chart>
+    <div class="row">
+        <div class="col-md-6">
+            <p-chart type="line" [data]="dayData"></p-chart>
+        </div>
+        <div class="col-md-6">
+            <p-chart type="line" [data]="durationData"></p-chart>
+        </div>
+    </div>
 </div>

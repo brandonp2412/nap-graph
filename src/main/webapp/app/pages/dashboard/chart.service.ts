@@ -3,25 +3,18 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_API_URL } from '../../app.constants';
 
-import { Chart, DayByDuration } from './chart.model';
+import { Chart, DayDuration, DurationRating } from './chart.model';
 import { createRequestOption } from '../../shared';
 
-export type DayResponseType = HttpResponse<DayByDuration>;
-export type DayArrayResponseType = HttpResponse<DayByDuration[]>;
+export type DayArrayResponseType = HttpResponse<DayDuration[]>;
+export type DurationArrayResponseType = HttpResponse<DurationRating[]>;
 
 @Injectable()
 export class ChartService {
 
-    private resourceUrl = SERVER_API_URL + 'api/dashboard/chart';
-
-    private static convertResponse(res: DayResponseType): DayResponseType {
-        const body: Chart = ChartService.convertDayFromServer(res.body);
-        return res.clone({body});
-    }
-
-    private static convertArrayResponse(res: DayArrayResponseType): DayArrayResponseType {
-        const jsonResponse: Chart[] = res.body;
-        const body: Chart[] = [];
+    private static convertDayArrayResponse(res: DayArrayResponseType): DayArrayResponseType {
+        const jsonResponse: DayDuration[] = res.body;
+        const body: DayDuration[] = [];
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(ChartService.convertDayFromServer(jsonResponse[i]));
         }
@@ -31,22 +24,38 @@ export class ChartService {
     /**
      * Convert a returned JSON object to Chart.
      */
-    private static convertDayFromServer(json: any): DayByDuration {
-        return Object.assign(new DayByDuration(), json);
+    private static convertDayFromServer(json: any): DayDuration {
+        return Object.assign(new DayDuration(), json);
+    }
+
+    private static convertDurationArrayResponse(res: DurationArrayResponseType): DurationArrayResponseType {
+        const jsonResponse: DurationRating[] = res.body;
+        const body: DurationRating[] = [];
+        for (let i = 0; i < jsonResponse.length; i++) {
+            body.push(ChartService.convertDurationFromServer(jsonResponse[i]));
+        }
+        return res.clone({body});
     }
 
     /**
-     * Convert a Chart to a JSON which can be sent to the server.
+     * Convert a returned JSON object to Chart.
      */
-    private static convert(chart: Chart): Chart {
-        return Object.assign({}, chart);
+    private static convertDurationFromServer(json: any): DurationRating {
+        return Object.assign(new DurationRating(), json);
     }
 
     constructor(private http: HttpClient) { }
 
-    getDayDurations(req?: any): Observable<HttpResponse<DayByDuration[]>> {
+    getDayDurations(req?: any): Observable<HttpResponse<DayDuration[]>> {
         const options = createRequestOption(req);
-        return this.http.get<DayByDuration[]>(`${SERVER_API_URL}/api/day-durations`, {params: options,
-            observe: 'response'}).map((res: HttpResponse<DayByDuration[]>) => ChartService.convertArrayResponse(res));
+        return this.http.get<DayDuration[]>(`${SERVER_API_URL}/api/day-durations`, {params: options,
+            observe: 'response'}).map((res: HttpResponse<DayDuration[]>) => ChartService.convertDayArrayResponse(res));
+    }
+
+    getDurationRatings(req?: any): Observable<HttpResponse<DurationRating[]>> {
+        const options = createRequestOption(req);
+        return this.http.get<DurationRating[]>(`${SERVER_API_URL}/api/duration-ratings`,
+            {params: options, observe: 'response'})
+            .map((res: HttpResponse<DurationRating[]>) => ChartService.convertDurationArrayResponse(res));
     }
 }

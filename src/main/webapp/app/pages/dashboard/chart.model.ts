@@ -4,7 +4,7 @@ export class Chart {
 
 }
 
-export class DurationByRating {
+export class DurationRating {
     constructor(
         public duration?: number,
         public averageRating?: number
@@ -12,7 +12,7 @@ export class DurationByRating {
     }
 }
 
-export class DayByDuration {
+export class DayDuration {
     constructor(
         public day?: DayType,
         public totalDuration?: number
