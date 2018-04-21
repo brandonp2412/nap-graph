@@ -12,7 +12,7 @@ import { Principal } from '../../shared';
     templateUrl: './person.component.html'
 })
 export class PersonComponent implements OnInit, OnDestroy {
-people: Person[];
+    people: Person[];
     currentAccount: any;
     eventSubscriber: Subscription;
 

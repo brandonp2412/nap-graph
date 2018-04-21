@@ -1,0 +1,12 @@
+{
+    "pages": [
+        {
+            "pageName": "chart",
+            "pageType": "clientOnly",
+            "pageGlyphIcon": "bar-chart",
+            "fields": []
+        }
+    ],
+    "pageSetGlyphIcon": "fw fa-tachomete",
+    "changelogDate": "20180421032348"
+}

@@ -15,6 +15,7 @@ import { NapChartAppRoutingModule} from './app-routing.module';
 import { NapChartHomeModule } from './home/home.module';
 import { NapChartAdminModule } from './admin/admin.module';
 import { NapChartAccountModule } from './account/account.module';
+import { NapChartPageSetsModule } from './pages/page-sets.module';
 import { NapChartEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
@@ -35,6 +36,7 @@ import {
         NapChartSharedModule,
         NapChartHomeModule,
         NapChartAdminModule,
+        NapChartPageSetsModule,
         NapChartAccountModule,
         NapChartEntityModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
