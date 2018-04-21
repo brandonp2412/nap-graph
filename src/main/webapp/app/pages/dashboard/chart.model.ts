@@ -1,8 +1,4 @@
-import { DayType } from '../../entities/nap';
-
-export class Chart {
-
-}
+export class Chart {}
 
 export class DurationRating {
     constructor(
@@ -12,10 +8,10 @@ export class DurationRating {
     }
 }
 
-export class DayDuration {
+export class DateDuration {
     constructor(
-        public day?: DayType,
-        public totalDuration?: number
+        public date?: Date,
+        public duration?: number
     ) {
     }
 }

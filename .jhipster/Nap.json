@@ -2,10 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "person",
-            "otherEntityName": "person",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "nap"
         }
     ],
     "fields": [
@@ -28,9 +30,8 @@
             "fieldValidateRulesMax": 10
         },
         {
-            "fieldName": "day",
-            "fieldType": "DayType",
-            "fieldValues": "MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY"
+            "fieldName": "date",
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "exercise",

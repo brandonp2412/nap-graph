@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Nap } from './nap.model';
 import { NapPopupService } from './nap-popup.service';
 import { NapService } from './nap.service';
-import { Person, PersonService } from '../person';
+import { User, UserService } from '../../shared';
 
 @Component({
     selector: 'jhi-nap-dialog',
@@ -20,21 +20,22 @@ export class NapDialogComponent implements OnInit {
     nap: Nap;
     isSaving: boolean;
 
-    people: Person[];
+    users: User[];
+    dateDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private napService: NapService,
-        private personService: PersonService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.personService.query()
-            .subscribe((res: HttpResponse<Person[]>) => { this.people = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.userService.query()
+            .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -71,7 +72,7 @@ export class NapDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackPersonById(index: number, item: Person) {
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 }

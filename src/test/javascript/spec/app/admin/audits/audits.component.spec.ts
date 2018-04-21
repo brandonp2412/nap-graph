@@ -14,7 +14,7 @@ function build2DigitsDatePart(datePart: number) {
 function getDate(isToday= true) {
     let date: Date = new Date();
     if (isToday) {
-        // Today + 1 day - needed if the current day must be included
+        // Today + 1 date - needed if the current date must be included
         date.setDate(date.getDate() + 1);
     } else {
       // get last month

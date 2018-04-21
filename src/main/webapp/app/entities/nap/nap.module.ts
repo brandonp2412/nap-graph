@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NapChartSharedModule } from '../../shared';
+import { NapChartAdminModule } from '../../admin/admin.module';
 import {
     NapService,
     NapPopupService,
@@ -23,6 +24,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         NapChartSharedModule,
+        NapChartAdminModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

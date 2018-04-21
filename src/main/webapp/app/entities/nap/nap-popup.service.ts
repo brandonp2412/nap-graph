@@ -29,6 +29,13 @@ export class NapPopupService {
                 this.napService.find(id)
                     .subscribe((napResponse: HttpResponse<Nap>) => {
                         const nap: Nap = napResponse.body;
+                        if (nap.date) {
+                            nap.date = {
+                                year: nap.date.getFullYear(),
+                                month: nap.date.getMonth() + 1,
+                                day: nap.date.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.napModalRef(component, nap);
                         resolve(this.ngbModalRef);
                     });

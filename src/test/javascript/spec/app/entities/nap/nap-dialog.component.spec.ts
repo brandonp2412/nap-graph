@@ -9,7 +9,7 @@ import { NapChartTestModule } from '../../../test.module';
 import { NapDialogComponent } from '../../../../../../main/webapp/app/entities/nap/nap-dialog.component';
 import { NapService } from '../../../../../../main/webapp/app/entities/nap/nap.service';
 import { Nap } from '../../../../../../main/webapp/app/entities/nap/nap.model';
-import { PersonService } from '../../../../../../main/webapp/app/entities/person';
+import { UserService } from '../../../../../../main/webapp/app/shared';
 
 describe('Component Tests', () => {
 
@@ -25,7 +25,7 @@ describe('Component Tests', () => {
                 imports: [NapChartTestModule],
                 declarations: [NapDialogComponent],
                 providers: [
-                    PersonService,
+                    UserService,
                     NapService
                 ]
             })

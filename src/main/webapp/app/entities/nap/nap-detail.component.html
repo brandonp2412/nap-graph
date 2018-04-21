@@ -12,19 +12,17 @@
         <dd>
             <span>{{nap.rating}}</span>
         </dd>
-        <dt><span>Day</span></dt>
+        <dt><span>Date</span></dt>
         <dd>
-            <span>{{nap.day}}</span>
+            <span>{{nap.date | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Exercise</span></dt>
         <dd>
             <span>{{nap.exercise}}</span>
         </dd>
-        <dt><span>Person</span></dt>
+        <dt><span>User</span></dt>
         <dd>
-            <div *ngIf="nap.person">
-                <a [routerLink]="['/person', nap.person?.id]">{{nap.person?.id}}</a>
-            </div>
+            {{nap.user?.login}}
         </dd>
     </dl>
 

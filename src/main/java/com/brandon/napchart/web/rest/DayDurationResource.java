@@ -42,14 +42,14 @@ public class DayDurationResource {
     public ResponseEntity<List<DayDuration>> getAllDayDurations(Pageable pageable) {
         log.debug("REST request to get a page of DayDurations");
         Page<DayDuration> page = dayDurationRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/day-durations");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/date-durations");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     @GetMapping("/day-durations/{dayType}")
     @Timed
     public ResponseEntity<DayDuration> getDayDuration(@PathVariable DayType dayType) {
-        log.debug("REST request to get DayDuration by day: {}", dayType);
+        log.debug("REST request to get DateDuration by date: {}", dayType);
         DayDuration dayDuration = dayDurationRepository.findOne(dayType);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(dayDuration));
     }

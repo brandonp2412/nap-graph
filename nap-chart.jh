@@ -1,22 +1,12 @@
-entity Person {}
-
 entity Nap {
     duration Integer required,
     rating Integer required min(0) max(10),
-    day DayType,
+    date LocalDate,
     exercise Boolean
 }
 
-enum DayType {
-	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
-}
-
 relationship OneToOne {
-	Person{user} to User
-}
-
-relationship OneToMany {
-	Person{naps} to Nap
+    Nap{user} to User
 }
 
 paginate Nap with infinite-scroll

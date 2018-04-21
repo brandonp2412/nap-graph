@@ -68,7 +68,7 @@ class NapGatlingTest extends Simulation {
             .exec(http("Create new nap")
             .post("/api/naps")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "duration":"0", "rating":"0", "day":null, "exercise":null}""")).asJSON
+            .body(StringBody("""{"id":null, "duration":"0", "rating":"0", "date":"2020-01-01T00:00:00.000Z", "exercise":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_nap_url"))).exitHereIfFailed
             .pause(10)

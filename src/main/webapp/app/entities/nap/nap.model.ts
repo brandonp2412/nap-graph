@@ -1,23 +1,13 @@
-import { BaseEntity } from './../../shared';
-
-export const enum DayType {
-    'MONDAY',
-    'TUESDAY',
-    'WEDNESDAY',
-    'THURSDAY',
-    'FRIDAY',
-    'SATURDAY',
-    'SUNDAY'
-}
+import { BaseEntity, User } from './../../shared';
 
 export class Nap implements BaseEntity {
     constructor(
         public id?: number,
         public duration?: number,
         public rating?: number,
-        public day?: DayType,
+        public date?: any,
         public exercise?: boolean,
-        public person?: BaseEntity,
+        public user?: User,
     ) {
         this.exercise = false;
     }

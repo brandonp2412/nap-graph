@@ -18,7 +18,7 @@ import java.util.Objects;
 public class DayDuration implements Serializable{
     @Id
     @Enumerated(EnumType.STRING)
-    @Column(name = "day")
+    @Column(name = "date")
     private DayType day;
 
     @Column(name = "total_duration")

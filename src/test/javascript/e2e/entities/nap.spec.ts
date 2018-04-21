@@ -37,7 +37,8 @@ describe('Nap e2e test', () => {
         expect(napDialogPage.getDurationInput()).toMatch('5');
         napDialogPage.setRatingInput('5');
         expect(napDialogPage.getRatingInput()).toMatch('5');
-        napDialogPage.daySelectLastOption();
+        napDialogPage.setDateInput('2000-12-31');
+        expect(napDialogPage.getDateInput()).toMatch('2000-12-31');
         napDialogPage.getExerciseInput().isSelected().then((selected) => {
             if (selected) {
                 napDialogPage.getExerciseInput().click();
@@ -47,7 +48,7 @@ describe('Nap e2e test', () => {
                 expect(napDialogPage.getExerciseInput().isSelected()).toBeTruthy();
             }
         });
-        napDialogPage.personSelectLastOption();
+        napDialogPage.userSelectLastOption();
         napDialogPage.save();
         expect(napDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -76,9 +77,9 @@ export class NapDialogPage {
     closeButton = element(by.css('button.close'));
     durationInput = element(by.css('input#field_duration'));
     ratingInput = element(by.css('input#field_rating'));
-    daySelect = element(by.css('select#field_day'));
+    dateInput = element(by.css('input#field_date'));
     exerciseInput = element(by.css('input#field_exercise'));
-    personSelect = element(by.css('select#field_person'));
+    userSelect = element(by.css('select#field_user'));
 
     getModalTitle() {
         return this.modalTitle.getText();
@@ -100,34 +101,31 @@ export class NapDialogPage {
         return this.ratingInput.getAttribute('value');
     };
 
-    setDaySelect = function(day) {
-        this.daySelect.sendKeys(day);
+    setDateInput = function(date) {
+        this.dateInput.sendKeys(date);
     };
 
-    getDaySelect = function() {
-        return this.daySelect.element(by.css('option:checked')).getText();
+    getDateInput = function() {
+        return this.dateInput.getAttribute('value');
     };
 
-    daySelectLastOption = function() {
-        this.daySelect.all(by.tagName('option')).last().click();
-    };
     getExerciseInput = function() {
         return this.exerciseInput;
     };
-    personSelectLastOption = function() {
-        this.personSelect.all(by.tagName('option')).last().click();
+    userSelectLastOption = function() {
+        this.userSelect.all(by.tagName('option')).last().click();
     };
 
-    personSelectOption = function(option) {
-        this.personSelect.sendKeys(option);
+    userSelectOption = function(option) {
+        this.userSelect.sendKeys(option);
     };
 
-    getPersonSelect = function() {
-        return this.personSelect;
+    getUserSelect = function() {
+        return this.userSelect;
     };
 
-    getPersonSelectedOption = function() {
-        return this.personSelect.element(by.css('option:checked')).getText();
+    getUserSelectedOption = function() {
+        return this.userSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

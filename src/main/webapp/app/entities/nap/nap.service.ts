@@ -3,6 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
+import { JhiDateUtils } from 'ng-jhipster';
+
 import { Nap } from './nap.model';
 import { createRequestOption } from '../../shared';
 
@@ -13,7 +15,7 @@ export class NapService {
 
     private resourceUrl =  SERVER_API_URL + 'api/naps';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
     create(nap: Nap): Observable<EntityResponseType> {
         const copy = this.convert(nap);
@@ -61,6 +63,8 @@ export class NapService {
      */
     private convertItemFromServer(nap: Nap): Nap {
         const copy: Nap = Object.assign({}, nap);
+        copy.date = this.dateUtils
+            .convertLocalDateFromServer(nap.date);
         return copy;
     }
 
@@ -69,6 +73,8 @@ export class NapService {
      */
     private convert(nap: Nap): Nap {
         const copy: Nap = Object.assign({}, nap);
+        copy.date = this.dateUtils
+            .convertLocalDateToServer(nap.date);
         return copy;
     }
 }

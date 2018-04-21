@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static com.brandon.napchart.web.rest.TestUtil.createFormattingConversionService;
@@ -29,7 +31,6 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.brandon.napchart.domain.enumeration.DayType;
 /**
  * Test class for the NapResource REST controller.
  *
@@ -45,8 +46,8 @@ public class NapResourceIntTest {
     private static final Integer DEFAULT_RATING = 0;
     private static final Integer UPDATED_RATING = 1;
 
-    private static final DayType DEFAULT_DAY = DayType.MONDAY;
-    private static final DayType UPDATED_DAY = DayType.TUESDAY;
+    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final Boolean DEFAULT_EXERCISE = false;
     private static final Boolean UPDATED_EXERCISE = true;
@@ -91,7 +92,7 @@ public class NapResourceIntTest {
         Nap nap = new Nap()
             .duration(DEFAULT_DURATION)
             .rating(DEFAULT_RATING)
-            .day(DEFAULT_DAY)
+            .date(DEFAULT_DATE)
             .exercise(DEFAULT_EXERCISE);
         return nap;
     }
@@ -118,7 +119,7 @@ public class NapResourceIntTest {
         Nap testNap = napList.get(napList.size() - 1);
         assertThat(testNap.getDuration()).isEqualTo(DEFAULT_DURATION);
         assertThat(testNap.getRating()).isEqualTo(DEFAULT_RATING);
-        assertThat(testNap.getDay()).isEqualTo(DEFAULT_DAY);
+        assertThat(testNap.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testNap.isExercise()).isEqualTo(DEFAULT_EXERCISE);
     }
 
@@ -190,7 +191,7 @@ public class NapResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(nap.getId().intValue())))
             .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION)))
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING)))
-            .andExpect(jsonPath("$.[*].day").value(hasItem(DEFAULT_DAY.toString())))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].exercise").value(hasItem(DEFAULT_EXERCISE.booleanValue())));
     }
 
@@ -207,7 +208,7 @@ public class NapResourceIntTest {
             .andExpect(jsonPath("$.id").value(nap.getId().intValue()))
             .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION))
             .andExpect(jsonPath("$.rating").value(DEFAULT_RATING))
-            .andExpect(jsonPath("$.day").value(DEFAULT_DAY.toString()))
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.exercise").value(DEFAULT_EXERCISE.booleanValue()));
     }
 
@@ -233,7 +234,7 @@ public class NapResourceIntTest {
         updatedNap
             .duration(UPDATED_DURATION)
             .rating(UPDATED_RATING)
-            .day(UPDATED_DAY)
+            .date(UPDATED_DATE)
             .exercise(UPDATED_EXERCISE);
 
         restNapMockMvc.perform(put("/api/naps")
@@ -247,7 +248,7 @@ public class NapResourceIntTest {
         Nap testNap = napList.get(napList.size() - 1);
         assertThat(testNap.getDuration()).isEqualTo(UPDATED_DURATION);
         assertThat(testNap.getRating()).isEqualTo(UPDATED_RATING);
-        assertThat(testNap.getDay()).isEqualTo(UPDATED_DAY);
+        assertThat(testNap.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testNap.isExercise()).isEqualTo(UPDATED_EXERCISE);
     }
 

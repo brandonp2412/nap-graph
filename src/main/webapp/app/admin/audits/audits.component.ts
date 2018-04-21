@@ -73,7 +73,7 @@ export class AuditsComponent implements OnInit {
 
     today() {
         const dateFormat = 'yyyy-MM-dd';
-        // Today + 1 day - needed if the current day must be included
+        // Today + 1 date - needed if the current date must be included
         const today: Date = new Date();
         today.setDate(today.getDate() + 1);
         const date = new Date(today.getFullYear(), today.getMonth(), today.getDate());

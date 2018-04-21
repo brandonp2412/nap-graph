@@ -30,18 +30,16 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="day" type="varchar(255)">
+            <column name="jhi_date" type="date">
                 <constraints nullable="true" />
             </column>
 
             <column name="exercise" type="bit">
                 <constraints nullable="true" />
             </column>
-
-            <column name="person_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="user_id" type="bigint">
+                <constraints unique="true" nullable="true" />
             </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

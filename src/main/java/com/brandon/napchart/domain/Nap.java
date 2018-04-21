@@ -7,9 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
-
-import com.brandon.napchart.domain.enumeration.DayType;
 
 /**
  * A Nap.
@@ -35,15 +34,15 @@ public class Nap implements Serializable {
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "day")
-    private DayType day;
+    @Column(name = "date")
+    private LocalDate date;
 
     @Column(name = "exercise")
     private Boolean exercise;
 
-    @ManyToOne
-    private Person person;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -80,17 +79,17 @@ public class Nap implements Serializable {
         this.rating = rating;
     }
 
-    public DayType getDay() {
-        return day;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public Nap day(DayType day) {
-        this.day = day;
+    public Nap date(LocalDate date) {
+        this.date = date;
         return this;
     }
 
-    public void setDay(DayType day) {
-        this.day = day;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Boolean isExercise() {
@@ -106,17 +105,17 @@ public class Nap implements Serializable {
         this.exercise = exercise;
     }
 
-    public Person getPerson() {
-        return person;
+    public User getUser() {
+        return user;
     }
 
-    public Nap person(Person person) {
-        this.person = person;
+    public Nap user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setUser(User user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -146,7 +145,7 @@ public class Nap implements Serializable {
             "id=" + getId() +
             ", duration=" + getDuration() +
             ", rating=" + getRating() +
-            ", day='" + getDay() + "'" +
+            ", date='" + getDate() + "'" +
             ", exercise='" + isExercise() + "'" +
             "}";
     }

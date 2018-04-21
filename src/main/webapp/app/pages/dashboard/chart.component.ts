@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { Chart, DayDuration, DurationRating } from './chart.model';
+import { Chart, DateDuration, DurationRating } from './chart.model';
 import { ChartService } from './chart.service';
 import { Principal } from '../../shared';
 
@@ -17,7 +17,7 @@ export class ChartComponent implements OnInit {
     durationData: any;
     dayData: any;
     durationByRating: DurationRating[];
-    dayByDuration: DayDuration[];
+    dayByDuration: DateDuration[];
 
     constructor(
         private chartService: ChartService,
@@ -33,7 +33,7 @@ export class ChartComponent implements OnInit {
             this.account = account;
         });
         this.chartService.getDayDurations().subscribe(
-            (res: HttpResponse<DayDuration[]>) => this.onDaySuccess(res.body),
+            (res: HttpResponse<DateDuration[]>) => this.onDaySuccess(res.body),
             (res: HttpErrorResponse) => this.onError(res.message));
         this.chartService.getDurationRatings().subscribe(
             (res: HttpResponse<DurationRating[]>) => this.onDurationSuccess(res.body),
@@ -69,7 +69,7 @@ export class ChartComponent implements OnInit {
         };
     }
 
-    private onDaySuccess(dayDurations: DayDuration[]) {
+    private onDaySuccess(dayDurations: DateDuration[]) {
         this.dayByDuration = dayDurations;
         this.setDayData(dayDurations);
     }
