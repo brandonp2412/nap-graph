@@ -45,7 +45,6 @@ public class CacheConfiguration {
             cm.createCache(com.brandon.napchart.domain.Person.class.getName(), jcacheConfiguration);
             cm.createCache(com.brandon.napchart.domain.Person.class.getName() + ".naps", jcacheConfiguration);
             cm.createCache(com.brandon.napchart.domain.Nap.class.getName(), jcacheConfiguration);
-            cm.createCache(com.brandon.napchart.domain.DayDuration.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
