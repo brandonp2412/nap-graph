@@ -70,7 +70,7 @@
             <label class="form-control-label" for="field_user">User</label>
             <select class="form-control" id="field_user" name="user" [(ngModel)]="nap.user" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="userOption.id === nap.user?.id ? nap.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                <option [ngValue]="userOption.id === nap.user?.id ? nap.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
             </select>
         </div>
     </div>
