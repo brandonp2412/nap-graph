@@ -48,7 +48,7 @@ public class DayDurationResource {
 
     @GetMapping("/day-durations/{dayType}")
     @Timed
-    public ResponseEntity<DayDuration> getNap(@PathVariable DayType dayType) {
+    public ResponseEntity<DayDuration> getDayDuration(@PathVariable DayType dayType) {
         log.debug("REST request to get DayDuration by day: {}", dayType);
         DayDuration dayDuration = dayDurationRepository.findOne(dayType);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(dayDuration));
