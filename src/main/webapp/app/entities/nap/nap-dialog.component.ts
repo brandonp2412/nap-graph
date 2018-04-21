@@ -19,7 +19,6 @@ export class NapDialogComponent implements OnInit {
 
     nap: Nap;
     isSaving: boolean;
-
     users: User[];
     dateDp: any;
 

@@ -1,6 +1,6 @@
 <div>
     <h2>
-        <span>Naps</span>
+        <span>My Naps</span>
         <button class="btn btn-primary float-right jh-create-entity create-nap" [routerLink]="['/', { outlets: { popup: ['nap-new'] } }]">
             <span class="fa fa-plus"></span>
             <span >
@@ -16,7 +16,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id" *jhiHasAnyAuthority="'ROLE_ADMIN'"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="duration"><span>Duration</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="rating"><span>Rating</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="date"><span>Date</span> <span class="fa fa-sort"></span></th>
@@ -32,7 +32,7 @@
                 <td>{{nap.rating}}</td>
                 <td>{{nap.date | date:'mediumDate'}}</td>
                 <td>{{nap.exercise}}</td>
-                <td>
+                <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
                     {{nap.user?.login}}
                 </td>
                 <td class="text-right">

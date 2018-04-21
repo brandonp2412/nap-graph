@@ -15,9 +15,9 @@ import { Principal } from '../../shared';
 export class ChartComponent implements OnInit {
     account: any;
     durationData: any;
-    dayData: any;
-    durationByRating: DurationRating[];
-    dayByDuration: DateDuration[];
+    dateData: any;
+    durationRatings: DurationRating[];
+    dateDurations: DateDuration[];
 
     constructor(
         private chartService: ChartService,
@@ -45,12 +45,12 @@ export class ChartComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    private setDayData(dayDurations) {
-        this.dayData = {
-            labels: dayDurations.map((dayByDuration) => dayByDuration.day),
+    private setDayData(dateDurations) {
+        this.dateData = {
+            labels: dateDurations.map((dayByDuration) => dayByDuration.date),
             datasets: [{
-                label: 'Day by Duration (Hours)',
-                data: dayDurations.map((dayByDuration) => dayByDuration.totalDuration),
+                label: 'Date by Duration (Hours)',
+                data: dateDurations.map((dayByDuration) => dayByDuration.totalDuration),
                 fill: false,
                 borderColor: '#4bc0c0'
             }]
@@ -70,12 +70,12 @@ export class ChartComponent implements OnInit {
     }
 
     private onDaySuccess(dayDurations: DateDuration[]) {
-        this.dayByDuration = dayDurations;
+        this.dateDurations = dayDurations;
         this.setDayData(dayDurations);
     }
 
     private onDurationSuccess(durationRatings: DurationRating[] | null) {
-        this.durationByRating = durationRatings;
+        this.durationRatings = durationRatings;
         this.setDurationData(durationRatings);
     }
 }

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "duration_by_rating")
+@Table(name = "duration_rating")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class DurationRating implements Serializable{
     @Id

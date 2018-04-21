@@ -10,16 +10,16 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "day_by_duration")
+@Table(name = "date_duration")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-public class DayDuration implements Serializable{
+public class DateDuration implements Serializable{
     @Id
-    @Enumerated(EnumType.STRING)
     @Column(name = "date")
-    private DayType day;
+    private LocalDate date;
 
     @Column(name = "total_duration")
     private Integer totalDuration;
@@ -32,11 +32,11 @@ public class DayDuration implements Serializable{
         this.totalDuration = totalDuration;
     }
 
-    public DayType getDay() {
-        return day;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDay(DayType day) {
-        this.day = day;
+    public void setDay(LocalDate date) {
+        this.date = date;
     }
 }

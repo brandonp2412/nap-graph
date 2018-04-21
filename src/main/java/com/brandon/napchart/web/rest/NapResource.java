@@ -1,5 +1,7 @@
 package com.brandon.napchart.web.rest;
 
+import com.brandon.napchart.security.AuthoritiesConstants;
+import com.brandon.napchart.security.SecurityUtils;
 import com.codahale.metrics.annotation.Timed;
 import com.brandon.napchart.domain.Nap;
 
@@ -91,10 +93,24 @@ public class NapResource {
      */
     @GetMapping("/naps")
     @Timed
-    public ResponseEntity<List<Nap>> getAllNaps(Pageable pageable) {
+    public ResponseEntity<List<Nap>> getAllNaps(Pageable pageable) throws Exception {
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.USER))
+            return getAllNapsByUser(pageable);
         log.debug("REST request to get a page of Naps");
         Page<Nap> page = napRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/naps");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/naps/user")
+    @Timed
+    public ResponseEntity<List<Nap>> getAllNapsByUser(Pageable pageable) throws Exception {
+        Optional<String> login = SecurityUtils.getCurrentUserLogin();
+        if (!login.isPresent())
+            throw new Exception("No user to authenticate against");
+        log.debug("REST request to get a page of Naps by user: {}", login);
+        Page<Nap> page = napRepository.findAllByUser(login.get(), pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/naps/user");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
