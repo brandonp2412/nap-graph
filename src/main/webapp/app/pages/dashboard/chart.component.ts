@@ -18,6 +18,8 @@ export class ChartComponent implements OnInit {
     dateData: any;
     durationRatings: DurationRating[];
     dateDurations: DateDuration[];
+    _hasDateData: boolean;
+    _hasDurationData: boolean;
 
     constructor(
         private chartService: ChartService,
@@ -33,12 +35,24 @@ export class ChartComponent implements OnInit {
             this.account = account;
         });
         this.chartService.getDayDurations().subscribe(
-            (res: HttpResponse<DateDuration[]>) => this.onDaySuccess(res.body),
+            (res: HttpResponse<DateDuration[]>) => this.onDateSuccess(res.body),
             (res: HttpErrorResponse) => this.onError(res.message));
         this.chartService.getDurationRatings().subscribe(
             (res: HttpResponse<DurationRating[]>) => this.onDurationSuccess(res.body),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    hasDateData() {
+        return this._hasDateData;
+    }
+
+    hasDurationData() {
+        return this._hasDurationData;
+    }
+
+    hasData() {
+        return this._hasDurationData || this._hasDateData;
     }
 
     private onError(error) {
@@ -69,13 +83,15 @@ export class ChartComponent implements OnInit {
         };
     }
 
-    private onDaySuccess(dayDurations: DateDuration[]) {
+    private onDateSuccess(dayDurations: DateDuration[]) {
         this.dateDurations = dayDurations;
         this.setDayData(dayDurations);
+        this._hasDateData = dayDurations.length > 0;
     }
 
     private onDurationSuccess(durationRatings: DurationRating[] | null) {
         this.durationRatings = durationRatings;
         this.setDurationData(durationRatings);
+        this._hasDurationData = durationRatings.length > 0;
     }
 }

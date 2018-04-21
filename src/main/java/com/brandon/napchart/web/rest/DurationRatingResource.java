@@ -2,6 +2,7 @@ package com.brandon.napchart.web.rest;
 
 import com.brandon.napchart.domain.DurationRating;
 import com.brandon.napchart.repository.DurationRatingRepository;
+import com.brandon.napchart.security.SecurityUtils;
 import com.brandon.napchart.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -39,18 +40,13 @@ public class DurationRatingResource {
 
     @GetMapping("/duration-ratings")
     @Timed
-    public ResponseEntity<List<DurationRating>> getAllDurationRatings(Pageable pageable) {
-        log.debug("REST request to get a page of DurationRatings");
-        Page<DurationRating> page = durationRatingResource.findAll(pageable);
+    public ResponseEntity<List<DurationRating>> getAllDurationRatings(Pageable pageable) throws Exception {
+        Optional<String> login = SecurityUtils.getCurrentUserLogin();
+        if (!login.isPresent())
+            throw new Exception("No user to authenticate against");
+        log.debug("REST request to get a page of DurationRatings by user: {}", login.get());
+        Page<DurationRating> page = durationRatingResource.findAllByUser(login.get(), pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/duration-ratings");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
-    @GetMapping("/duration-ratings/{rating}")
-    @Timed
-    public ResponseEntity<DurationRating> getDurationRating(@PathVariable Integer rating) {
-        log.debug("REST request to get DurationRating by rating: {}", rating);
-        DurationRating dayDuration = durationRatingResource.findOne(rating);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(dayDuration));
     }
 }

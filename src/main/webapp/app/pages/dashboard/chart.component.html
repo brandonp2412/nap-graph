@@ -1,12 +1,15 @@
 <div>
     <h2><span>My Charts</span></h2>
     <hr>
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row" *ngIf="hasData()">
+        <div class="col-md-6" *ngIf="hasDateData()">
             <p-chart type="line" [data]="dateData"></p-chart>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="hasDurationData()">
             <p-chart type="line" [data]="durationData"></p-chart>
         </div>
+    </div>
+    <div *ngIf="!hasData()" align="center">
+        <h2>Looks like you have no data, try <a routerLink="/nap">setting</a> it first, then come back</h2>
     </div>
 </div>

@@ -94,7 +94,7 @@ public class NapResource {
     @GetMapping("/naps")
     @Timed
     public ResponseEntity<List<Nap>> getAllNaps(Pageable pageable) throws Exception {
-        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.USER))
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
             return getAllNapsByUser(pageable);
         log.debug("REST request to get a page of Naps");
         Page<Nap> page = napRepository.findAll(pageable);

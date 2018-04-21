@@ -24,6 +24,17 @@ public class DateDuration implements Serializable{
     @Column(name = "total_duration")
     private Integer totalDuration;
 
+    @OneToOne
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Integer getTotalDuration() {
         return totalDuration;
     }

@@ -2,6 +2,7 @@ package com.brandon.napchart.web.rest;
 
 import com.brandon.napchart.domain.DateDuration;
 import com.brandon.napchart.repository.DateDurationRepository;
+import com.brandon.napchart.security.SecurityUtils;
 import com.brandon.napchart.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -37,9 +38,12 @@ public class DateDurationResource {
 
     @GetMapping("/day-durations")
     @Timed
-    public ResponseEntity<List<DateDuration>> getAllDateDurations(Pageable pageable) {
-        log.debug("REST request to get a page of DayDurations");
-        Page<DateDuration> page = dateDurationRepository.findAll(pageable);
+    public ResponseEntity<List<DateDuration>> getAllDateDurations(Pageable pageable) throws Exception {
+        Optional<String> login = SecurityUtils.getCurrentUserLogin();
+        if (!login.isPresent())
+            throw new Exception("No user to authenticate against");
+        log.debug("REST request to get a page of DayDurations for user: {}", login.get());
+        Page<DateDuration> page = dateDurationRepository.findAllByUser(login.get(), pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/date-durations");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

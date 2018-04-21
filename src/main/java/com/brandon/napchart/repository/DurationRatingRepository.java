@@ -1,7 +1,11 @@
 package com.brandon.napchart.repository;
 
 import com.brandon.napchart.domain.DurationRating;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -11,5 +15,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface DurationRatingRepository extends JpaRepository<DurationRating, Integer> {
-
+    @Query("select durationRating from DurationRating durationRating where " +
+        "durationRating.user.login = :login ")
+    Page<DurationRating> findAllByUser(@Param("login") String login, Pageable pageable);
 }
