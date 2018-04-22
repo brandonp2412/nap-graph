@@ -1,12 +1,20 @@
 <div>
-    <h2><span>My Charts</span></h2>
+    <div class="row">
+        <div class="col-md-4"><h2>My Charts</h2></div>
+        <div class="col-md-4" align="center">
+            <button type="button" class="btn btn-outline-secondary">Interactive</button>
+        </div>
+        <div class="col-md-4" align="right">
+            <button type="button" class="btn btn-outline-primary" routerLink="/nap">Set my Data</button>
+        </div>
+    </div>
     <hr>
     <div class="row" *ngIf="hasData()">
         <div class="col-md-6" *ngIf="hasDateData()">
-            <p-chart type="line" [data]="dateData"></p-chart>
+            <p-chart type="line" [data]="dateData" [options]="optionsDate"></p-chart>
         </div>
         <div class="col-md-6" *ngIf="hasDurationData()">
-            <p-chart type="line" [data]="durationData"></p-chart>
+            <p-chart type="line" [data]="durationData" [options]="optionsDuration"></p-chart>
         </div>
     </div>
     <div *ngIf="!hasData()" align="center">

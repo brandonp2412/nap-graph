@@ -24,15 +24,15 @@ public class DateDuration implements Serializable{
     @Column(name = "total_duration")
     private Integer totalDuration;
 
-    @OneToOne
-    private User user;
+    @Column
+    private String login;
 
-    public User getUser() {
-        return user;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Integer getTotalDuration() {

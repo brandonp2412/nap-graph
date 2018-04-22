@@ -20,6 +20,9 @@ export class ChartComponent implements OnInit {
     dateDurations: DateDuration[];
     _hasDateData: boolean;
     _hasDurationData: boolean;
+    optionsDate = {scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]}};
+    optionsDuration = {scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Rating (out of 10)'}}],
+        xAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]}};
 
     constructor(
         private chartService: ChartService,
@@ -63,7 +66,7 @@ export class ChartComponent implements OnInit {
         this.dateData = {
             labels: dateDurations.map((dayByDuration) => dayByDuration.date),
             datasets: [{
-                label: 'Date by Duration (Hours)',
+                label: 'Date by Duration',
                 data: dateDurations.map((dayByDuration) => dayByDuration.totalDuration),
                 fill: false,
                 borderColor: '#4bc0c0'
@@ -75,7 +78,7 @@ export class ChartComponent implements OnInit {
         this.durationData = {
             labels: durationRatings.map((durationByRating) => durationByRating.duration),
             datasets: [{
-                label: 'Duration by Rating (out of 10)',
+                label: 'Duration by Rating',
                 data: durationRatings.map((durationByRating) => durationByRating.averageRating),
                 fill: false,
                 borderColor: '#565656'

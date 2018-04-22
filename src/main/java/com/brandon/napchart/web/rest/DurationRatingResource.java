@@ -39,17 +39,6 @@ public class DurationRatingResource {
         this.durationRatingResource = durationRatingResource;
     }
 
-    @GetMapping("/duration-ratings")
-    @Timed
-    public ResponseEntity<List<DurationRating>> getAllDurationRatings(Pageable pageable) throws Exception {
-        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
-            return getAllDurationRatingsForUser(pageable);
-        log.debug("REST request to get a page of DurationRatings");
-        Page<DurationRating> page = durationRatingResource.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/duration-ratings");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
     @GetMapping("/duration-ratings/user")
     @Timed
     public ResponseEntity<List<DurationRating>> getAllDurationRatingsForUser(Pageable pageable) throws Exception {

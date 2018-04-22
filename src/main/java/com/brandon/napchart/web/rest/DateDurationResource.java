@@ -32,24 +32,17 @@ public class DateDurationResource {
 
     private final DateDurationRepository dateDurationRepository;
 
-    private final UserRepository userRepository;
-
-    public DateDurationResource(DateDurationRepository dayDurationRepository, UserRepository userRepository) {
+    public DateDurationResource(DateDurationRepository dayDurationRepository) {
         this.dateDurationRepository = dayDurationRepository;
-        this.userRepository = userRepository;
     }
 
-    @GetMapping("/date-durations")
+    @GetMapping("/date-durations/user")
     @Timed
     public ResponseEntity<List<DateDuration>> getAllDateDurations(Pageable pageable) throws Exception {
         Optional<String> login = SecurityUtils.getCurrentUserLogin();
         if (!login.isPresent())
             throw new Exception("No user to authenticate against");
-        log.debug("REST request to get a page of DayDurations for user: {}", login.get());
-        Optional<User> user = userRepository.findOneByLogin(login.get());
-        if (!user.isPresent())
-            throw new Exception("No user in DB to match login");
-        Page<DateDuration> page = dateDurationRepository.findAllByUser(user.get(), pageable);
+        Page<DateDuration> page = dateDurationRepository.findAllByLogin(login.get(), pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/date-durations");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

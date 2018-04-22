@@ -19,9 +19,5 @@ import java.time.LocalDate;
 @SuppressWarnings("unused")
 @Repository
 public interface DateDurationRepository extends JpaRepository<DateDuration, LocalDate> {
-//    @Query("select dateDuration from DateDuration dateDuration " +
-//        "where dateDuration.user.login = :login group by dateDuration.date, dateDuration.user")
-//    This query fails with error: Column "USER_ID" must be in the GROUP BY list
-
-    Page<DateDuration> findAllByUser(User user, Pageable pageable);
+    Page<DateDuration> findAllByLogin(String login, Pageable pageable);
 }

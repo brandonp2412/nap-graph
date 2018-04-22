@@ -48,13 +48,13 @@ export class ChartService {
 
     getDayDurations(req?: any): Observable<HttpResponse<DateDuration[]>> {
         const options = createRequestOption(req);
-        return this.http.get<DateDuration[]>(`${SERVER_API_URL}/api/day-durations`, {params: options,
+        return this.http.get<DateDuration[]>(`${SERVER_API_URL}/api/date-durations/user`, {params: options,
             observe: 'response'}).map((res: HttpResponse<DateDuration[]>) => ChartService.convertDayArrayResponse(res));
     }
 
     getDurationRatings(req?: any): Observable<HttpResponse<DurationRating[]>> {
         const options = createRequestOption(req);
-        return this.http.get<DurationRating[]>(`${SERVER_API_URL}/api/duration-ratings`,
+        return this.http.get<DurationRating[]>(`${SERVER_API_URL}/api/duration-ratings/user`,
             {params: options, observe: 'response'})
             .map((res: HttpResponse<DurationRating[]>) => ChartService.convertDurationArrayResponse(res));
     }
