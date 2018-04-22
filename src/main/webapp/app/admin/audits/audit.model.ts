@@ -6,5 +6,6 @@ export class Audit {
         public principal: string,
         public timestamp: string,
         public type: string
-    ) { }
+    ) {
+    }
 }

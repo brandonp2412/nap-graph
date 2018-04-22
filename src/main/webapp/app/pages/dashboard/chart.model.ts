@@ -1,4 +1,5 @@
-export class Chart {}
+export class Chart {
+}
 
 export class DurationRating {
     constructor(

@@ -1,9 +1,9 @@
-import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Register } from './register.service';
-import { LoginModalService, EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from '../../shared';
+import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE, LoginModalService } from '../../shared';
 
 @Component({
     selector: 'jhi-register',

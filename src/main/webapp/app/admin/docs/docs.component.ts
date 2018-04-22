@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
     templateUrl: './docs.component.html'
 })
 export class JhiDocsComponent {
-    constructor(
-    ) {
+    constructor() {
     }
 }

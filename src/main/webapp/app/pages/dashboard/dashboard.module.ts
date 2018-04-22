@@ -1,13 +1,8 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NapChartSharedModule } from '../../shared';
-import {
-    ChartService,
-    ChartComponent,
-    DashboardRoute,
-} from './';
-import { ChartModule } from 'primeng/chart';
+import { ChartComponent, ChartService, DashboardRoute, InteractiveComponent, InteractiveService, } from './';
 
 const PAGE_SET_STATES = [
     ...DashboardRoute,
@@ -16,19 +11,22 @@ const PAGE_SET_STATES = [
 @NgModule({
     imports: [
         NapChartSharedModule,
-        RouterModule.forRoot(PAGE_SET_STATES, { useHash: true }),
-        ChartModule
+        RouterModule.forRoot(PAGE_SET_STATES, {useHash: true})
     ],
     declarations: [
-    ChartComponent,
-],
+        ChartComponent,
+        InteractiveComponent,
+    ],
     entryComponents: [
-    ChartComponent,
-],
+        ChartComponent,
+        InteractiveComponent,
+    ],
     providers: [
-    ChartService,
-],
-schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        ChartService,
+        InteractiveService,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
-export class NapChartDashboardModule {}
+export class NapChartDashboardModule {
+}

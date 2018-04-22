@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
+import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
 
@@ -12,7 +12,8 @@ export class JhiMainComponent implements OnInit {
     constructor(
         private titleService: Title,
         private router: Router
-    ) {}
+    ) {
+    }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
         let title: string = (routeSnapshot.data && routeSnapshot.data['pageTitle']) ? routeSnapshot.data['pageTitle'] : 'napChartApp';

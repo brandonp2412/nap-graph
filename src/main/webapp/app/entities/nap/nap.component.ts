@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 
 import { Nap } from './nap.model';
 import { NapService } from './nap.service';
@@ -62,6 +62,7 @@ export class NapComponent implements OnInit, OnDestroy {
         this.page = page;
         this.loadAll();
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -77,6 +78,7 @@ export class NapComponent implements OnInit, OnDestroy {
     trackId(index: number, item: Nap) {
         return item.id;
     }
+
     registerChangeInNaps() {
         this.eventSubscriber = this.eventManager.subscribe('napListModification', (response) => this.reset());
     }

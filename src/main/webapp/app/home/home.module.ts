@@ -1,23 +1,21 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NapChartSharedModule } from '../shared';
 
 import { HOME_ROUTE, HomeComponent } from './';
-import {ChartModule} from 'primeng/chart';
 
 @NgModule({
     imports: [
         NapChartSharedModule,
-        RouterModule.forChild([ HOME_ROUTE ])
+        RouterModule.forChild([HOME_ROUTE])
     ],
     declarations: [
         HomeComponent,
     ],
-    entryComponents: [
-    ],
-    providers: [
-    ],
+    entryComponents: [],
+    providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NapChartHomeModule {}
+export class NapChartHomeModule {
+}

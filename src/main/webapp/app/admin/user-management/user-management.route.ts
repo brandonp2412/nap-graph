@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
 
 import { JhiPaginationUtil } from 'ng-jhipster';
 
@@ -13,7 +13,8 @@ import { Principal } from '../../shared';
 @Injectable()
 export class UserResolve implements CanActivate {
 
-    constructor(private principal: Principal) { }
+    constructor(private principal: Principal) {
+    }
 
     canActivate() {
         return this.principal.identity().then((account) => this.principal.hasAnyAuthority(['ROLE_ADMIN']));
@@ -23,7 +24,8 @@ export class UserResolve implements CanActivate {
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {
 
-    constructor(private paginationUtil: JhiPaginationUtil) {}
+    constructor(private paginationUtil: JhiPaginationUtil) {
+    }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const page = route.queryParams['page'] ? route.queryParams['page'] : '1';

@@ -3,26 +3,27 @@
     <div class="modal-header">
         <h4 class="modal-title" id="myNapLabel">Create or edit a Nap</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
+                (click)="clear()">&times;
+        </button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!nap.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="nap.id" readonly />
+                   [(ngModel)]="nap.id" readonly/>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_duration">Duration</label>
             <input type="number" class="form-control" name="duration" id="field_duration"
-                [(ngModel)]="nap.duration" required/>
+                   [(ngModel)]="nap.duration" required/>
             <div [hidden]="!(editForm.controls.duration?.dirty && editForm.controls.duration?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.duration?.errors?.required">
-                   This field is required.
+                       [hidden]="!editForm.controls.duration?.errors?.required">
+                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.duration?.errors?.number">
+                       [hidden]="!editForm.controls.duration?.errors?.number">
                     This field should be a number.
                 </small>
             </div>
@@ -30,22 +31,22 @@
         <div class="form-group">
             <label class="form-control-label" for="field_rating">Rating</label>
             <input type="number" class="form-control" name="rating" id="field_rating"
-                [(ngModel)]="nap.rating" required min="0" max="10"/>
+                   [(ngModel)]="nap.rating" required min="0" max="10"/>
             <div [hidden]="!(editForm.controls.rating?.dirty && editForm.controls.rating?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.rating?.errors?.required">
-                   This field is required.
+                       [hidden]="!editForm.controls.rating?.errors?.required">
+                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.rating?.errors?.min">
+                       [hidden]="!editForm.controls.rating?.errors?.min">
                     This field should be at least 0.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.rating?.errors?.max">
+                       [hidden]="!editForm.controls.rating?.errors?.max">
                     This field cannot be more than 10.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.rating?.errors?.number">
+                       [hidden]="!editForm.controls.rating?.errors?.number">
                     This field should be a number.
                 </small>
             </div>
@@ -64,14 +65,16 @@
         <div class="form-group">
             <label class="form-control-label" for="field_exercise">Exercise</label>
             <input type="checkbox" class="form-control" name="exercise" id="field_exercise"
-                [(ngModel)]="nap.exercise" />
+                   [(ngModel)]="nap.exercise"/>
         </div>
 
         <div class="form-group" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <label class="form-control-label" for="field_user">User</label>
-            <select class="form-control" id="field_user" name="user" [(ngModel)]="nap.user" >
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="nap.user">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="userOption.id === nap.user?.id ? nap.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                <option [ngValue]="userOption.id === nap.user?.id ? nap.user : userOption"
+                        *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}
+                </option>
             </select>
         </div>
     </div>

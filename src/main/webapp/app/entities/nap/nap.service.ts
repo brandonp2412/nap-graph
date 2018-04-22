@@ -13,35 +13,36 @@ export type EntityResponseType = HttpResponse<Nap>;
 @Injectable()
 export class NapService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/naps';
+    private resourceUrl = SERVER_API_URL + 'api/naps';
 
-    constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
+    constructor(private http: HttpClient, private dateUtils: JhiDateUtils) {
+    }
 
     create(nap: Nap): Observable<EntityResponseType> {
         const copy = this.convert(nap);
-        return this.http.post<Nap>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.post<Nap>(this.resourceUrl, copy, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     update(nap: Nap): Observable<EntityResponseType> {
         const copy = this.convert(nap);
-        return this.http.put<Nap>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.put<Nap>(this.resourceUrl, copy, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Nap>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Nap>(`${this.resourceUrl}/${id}`, {observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     query(req?: any): Observable<HttpResponse<Nap[]>> {
         const options = createRequestOption(req);
-        return this.http.get<Nap[]>(this.resourceUrl, { params: options, observe: 'response' })
+        return this.http.get<Nap[]>(this.resourceUrl, {params: options, observe: 'response'})
             .map((res: HttpResponse<Nap[]>) => this.convertArrayResponse(res));
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, {observe: 'response'});
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

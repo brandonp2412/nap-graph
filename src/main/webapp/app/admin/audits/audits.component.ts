@@ -7,8 +7,8 @@ import { AuditsService } from './audits.service';
 import { ITEMS_PER_PAGE } from '../../shared';
 
 @Component({
-  selector: 'jhi-audit',
-  templateUrl: './audits.component.html'
+    selector: 'jhi-audit',
+    templateUrl: './audits.component.html'
 })
 export class AuditsComponent implements OnInit {
     audits: Audit[];
@@ -49,12 +49,14 @@ export class AuditsComponent implements OnInit {
     }
 
     onChangeDate() {
-        this.auditsService.query({page: this.page - 1, size: this.itemsPerPage,
-            fromDate: this.fromDate, toDate: this.toDate}).subscribe((res) => {
+        this.auditsService.query({
+            page: this.page - 1, size: this.itemsPerPage,
+            fromDate: this.fromDate, toDate: this.toDate
+        }).subscribe((res) => {
 
             this.audits = res.body;
             this.links = this.parseLinks.parse(res.headers.get('link'));
-            this.totalItems = + res.headers.get('X-Total-Count');
+            this.totalItems = +res.headers.get('X-Total-Count');
         });
     }
 

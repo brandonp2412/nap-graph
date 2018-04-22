@@ -10,7 +10,7 @@ export class JhiConfigurationService {
     }
 
     get(): Observable<any> {
-        return this.http.get(SERVER_API_URL + 'management/configprops', { observe: 'response' }).map((res: HttpResponse<any>) => {
+        return this.http.get(SERVER_API_URL + 'management/configprops', {observe: 'response'}).map((res: HttpResponse<any>) => {
             const properties: any[] = [];
 
             const propertiesObject = res.body;
@@ -23,13 +23,13 @@ export class JhiConfigurationService {
 
             return properties.sort((propertyA, propertyB) => {
                 return (propertyA.prefix === propertyB.prefix) ? 0 :
-                       (propertyA.prefix < propertyB.prefix) ? -1 : 1;
+                    (propertyA.prefix < propertyB.prefix) ? -1 : 1;
             });
         });
     }
 
     getEnv(): Observable<any> {
-        return this.http.get(SERVER_API_URL + 'management/env', { observe: 'response' }).map((res: HttpResponse<any>) => {
+        return this.http.get(SERVER_API_URL + 'management/env', {observe: 'response'}).map((res: HttpResponse<any>) => {
             const properties: any = {};
 
             const propertiesObject = res.body;

@@ -10,7 +10,8 @@ export class AuthServerProvider {
         private http: HttpClient,
         private $localStorage: LocalStorageService,
         private $sessionStorage: SessionStorageService
-    ) {}
+    ) {
+    }
 
     getToken() {
 
@@ -24,7 +25,7 @@ export class AuthServerProvider {
             password: credentials.password,
             rememberMe: credentials.rememberMe
         };
-        return this.http.post(SERVER_API_URL + 'api/authenticate', data, {observe : 'response'}).map(authenticateSuccess.bind(this));
+        return this.http.post(SERVER_API_URL + 'api/authenticate', data, {observe: 'response'}).map(authenticateSuccess.bind(this));
 
         function authenticateSuccess(resp) {
             const bearerToken = resp.headers.get('Authorization');

@@ -36,7 +36,7 @@
   },
   "generator-jhipster-pages": {
     "promptValues": {
-      "pageSet": "_CreateNew_",
+      "pageSet": "dashboard",
       "pageType": "clientOnly"
     }
   }

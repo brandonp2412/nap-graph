@@ -1,9 +1,9 @@
 import './vendor.ts';
 
-import { NgModule, Injector } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService  } from 'ngx-webstorage';
+import { LocalStorageService, Ng2Webstorage, SessionStorageService } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
@@ -11,7 +11,7 @@ import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interc
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { NapChartSharedModule, UserRouteAccessService } from './shared';
-import { NapChartAppRoutingModule} from './app-routing.module';
+import { NapChartAppRoutingModule } from './app-routing.module';
 import { NapChartHomeModule } from './home/home.module';
 import { NapChartAdminModule } from './admin/admin.module';
 import { NapChartAccountModule } from './account/account.module';
@@ -20,19 +20,19 @@ import { NapChartEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
+    ErrorComponent,
+    FooterComponent,
     JhiMainComponent,
     NavbarComponent,
-    FooterComponent,
-    ProfileService,
     PageRibbonComponent,
-    ErrorComponent
+    ProfileService
 } from './layouts';
 
 @NgModule({
     imports: [
         BrowserModule,
         NapChartAppRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+        Ng2Webstorage.forRoot({prefix: 'jhi', separator: '-'}),
         NapChartSharedModule,
         NapChartHomeModule,
         NapChartAdminModule,
@@ -86,6 +86,7 @@ import {
             ]
         }
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [JhiMainComponent]
 })
-export class NapChartAppModule {}
+export class NapChartAppModule {
+}

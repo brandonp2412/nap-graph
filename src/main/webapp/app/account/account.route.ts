@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 
 import {
     activateRoute,
-    passwordRoute,
     passwordResetFinishRoute,
     passwordResetInitRoute,
+    passwordRoute,
     registerRoute,
     settingsRoute
 } from './';
