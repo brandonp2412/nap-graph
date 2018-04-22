@@ -32,11 +32,17 @@
                                 <span>Charts</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="nap" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <i class="fa fa-list" aria-hidden="true"></i>&nbsp;
+                                <span>Naps</span>
+                            </a>
+                        </li>
                         <!-- jhipster-needle-add-element-to-dashboards - JHipster will add elements to the dashboards here -->
                     </ul>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <i class="fa fa-th-list" aria-hidden="true"></i>

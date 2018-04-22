@@ -1,11 +1,12 @@
 package com.brandon.napchart.web.rest;
 
 import com.brandon.napchart.domain.DateDuration;
+import com.brandon.napchart.domain.User;
 import com.brandon.napchart.repository.DateDurationRepository;
+import com.brandon.napchart.repository.UserRepository;
 import com.brandon.napchart.security.SecurityUtils;
 import com.brandon.napchart.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,18 +32,24 @@ public class DateDurationResource {
 
     private final DateDurationRepository dateDurationRepository;
 
-    public DateDurationResource(DateDurationRepository dayDurationRepository) {
+    private final UserRepository userRepository;
+
+    public DateDurationResource(DateDurationRepository dayDurationRepository, UserRepository userRepository) {
         this.dateDurationRepository = dayDurationRepository;
+        this.userRepository = userRepository;
     }
 
-    @GetMapping("/day-durations")
+    @GetMapping("/date-durations")
     @Timed
     public ResponseEntity<List<DateDuration>> getAllDateDurations(Pageable pageable) throws Exception {
         Optional<String> login = SecurityUtils.getCurrentUserLogin();
         if (!login.isPresent())
             throw new Exception("No user to authenticate against");
         log.debug("REST request to get a page of DayDurations for user: {}", login.get());
-        Page<DateDuration> page = dateDurationRepository.findAllByUser(login.get(), pageable);
+        Optional<User> user = userRepository.findOneByLogin(login.get());
+        if (!user.isPresent())
+            throw new Exception("No user in DB to match login");
+        Page<DateDuration> page = dateDurationRepository.findAllByUser(user.get(), pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/date-durations");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

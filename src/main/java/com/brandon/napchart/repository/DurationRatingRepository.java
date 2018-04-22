@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * Spring Data JPA repository for the Nap entity.
@@ -15,7 +17,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface DurationRatingRepository extends JpaRepository<DurationRating, Integer> {
-    @Query("select durationRating from DurationRating durationRating where " +
-        "durationRating.user.login = :login ")
-    Page<DurationRating> findAllByUser(@Param("login") String login, Pageable pageable);
+    Page<DurationRating> findAllByLogin(String login, Pageable pageable);
 }

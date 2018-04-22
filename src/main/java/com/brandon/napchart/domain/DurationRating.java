@@ -18,15 +18,15 @@ public class DurationRating implements Serializable{
     @Column(name = "average_rating")
     private Integer averageRating;
 
-    @OneToOne
-    private User user;
+    @Column(name = "login")
+    private String login;
 
-    public User getUser() {
-        return user;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Integer getDuration() {

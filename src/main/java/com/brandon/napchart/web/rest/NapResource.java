@@ -1,5 +1,7 @@
 package com.brandon.napchart.web.rest;
 
+import com.brandon.napchart.domain.User;
+import com.brandon.napchart.repository.UserRepository;
 import com.brandon.napchart.security.AuthoritiesConstants;
 import com.brandon.napchart.security.SecurityUtils;
 import com.codahale.metrics.annotation.Timed;
@@ -39,8 +41,11 @@ public class NapResource {
 
     private final NapRepository napRepository;
 
-    public NapResource(NapRepository napRepository) {
+    private final UserRepository userRepository;
+
+    public NapResource(NapRepository napRepository, UserRepository userRepository) {
         this.napRepository = napRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -52,8 +57,10 @@ public class NapResource {
      */
     @PostMapping("/naps")
     @Timed
-    public ResponseEntity<Nap> createNap(@Valid @RequestBody Nap nap) throws URISyntaxException {
+    public ResponseEntity<Nap> createNap(@Valid @RequestBody Nap nap) throws Exception {
         log.debug("REST request to save Nap : {}", nap);
+        if (!SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
+            setUser(nap);
         if (nap.getId() != null) {
             throw new BadRequestAlertException("A new nap cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -61,6 +68,16 @@ public class NapResource {
         return ResponseEntity.created(new URI("/api/naps/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+
+    private void setUser(Nap nap) throws Exception {
+        Optional<String> login = SecurityUtils.getCurrentUserLogin();
+        if (!login.isPresent())
+            throw new Exception("No user to authenticate against");
+        Optional<User> user = userRepository.findOneByLogin(login.get());
+        if (!user.isPresent())
+            throw new Exception("Couldn't find user for given login");
+        nap.setUser(user.get());
     }
 
     /**
@@ -74,8 +91,10 @@ public class NapResource {
      */
     @PutMapping("/naps")
     @Timed
-    public ResponseEntity<Nap> updateNap(@Valid @RequestBody Nap nap) throws URISyntaxException {
+    public ResponseEntity<Nap> updateNap(@Valid @RequestBody Nap nap) throws Exception {
         log.debug("REST request to update Nap : {}", nap);
+        if (!SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
+            setUser(nap);
         if (nap.getId() == null) {
             return createNap(nap);
         }
@@ -83,6 +102,16 @@ public class NapResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, nap.getId().toString()))
             .body(result);
+    }
+
+    @GetMapping("/naps/average-ratings")
+    @Timed
+    public ResponseEntity<Nap> getAverageRatings() throws Exception {
+        log.debug("REST request to get average ratings for Naps");
+        Optional<String> login = SecurityUtils.getCurrentUserLogin();
+        if (!login.isPresent())
+            throw new Exception("Couldn't find a user to authenticate against");
+        return napRepository.findAllAverageRatings(login.get());
     }
 
     /**

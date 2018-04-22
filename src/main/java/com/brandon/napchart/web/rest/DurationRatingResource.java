@@ -1,11 +1,13 @@
 package com.brandon.napchart.web.rest;
 
 import com.brandon.napchart.domain.DurationRating;
+import com.brandon.napchart.domain.User;
 import com.brandon.napchart.repository.DurationRatingRepository;
+import com.brandon.napchart.repository.UserRepository;
+import com.brandon.napchart.security.AuthoritiesConstants;
 import com.brandon.napchart.security.SecurityUtils;
 import com.brandon.napchart.web.rest.util.PaginationUtil;
 import com.codahale.metrics.annotation.Timed;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,7 +16,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,11 +42,22 @@ public class DurationRatingResource {
     @GetMapping("/duration-ratings")
     @Timed
     public ResponseEntity<List<DurationRating>> getAllDurationRatings(Pageable pageable) throws Exception {
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
+            return getAllDurationRatingsForUser(pageable);
+        log.debug("REST request to get a page of DurationRatings");
+        Page<DurationRating> page = durationRatingResource.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/duration-ratings");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/duration-ratings/user")
+    @Timed
+    public ResponseEntity<List<DurationRating>> getAllDurationRatingsForUser(Pageable pageable) throws Exception {
         Optional<String> login = SecurityUtils.getCurrentUserLogin();
         if (!login.isPresent())
             throw new Exception("No user to authenticate against");
         log.debug("REST request to get a page of DurationRatings by user: {}", login.get());
-        Page<DurationRating> page = durationRatingResource.findAllByUser(login.get(), pageable);
+        Page<DurationRating> page = durationRatingResource.findAllByLogin(login.get(), pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/duration-ratings");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

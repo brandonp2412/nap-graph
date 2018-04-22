@@ -4,6 +4,7 @@ import com.brandon.napchart.NapChartApp;
 
 import com.brandon.napchart.domain.Nap;
 import com.brandon.napchart.repository.NapRepository;
+import com.brandon.napchart.repository.UserRepository;
 import com.brandon.napchart.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -56,6 +57,9 @@ public class NapResourceIntTest {
     private NapRepository napRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -74,7 +78,7 @@ public class NapResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final NapResource napResource = new NapResource(napRepository);
+        final NapResource napResource = new NapResource(napRepository, userRepository);
         this.restNapMockMvc = MockMvcBuilders.standaloneSetup(napResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
