@@ -1,5 +1,10 @@
 # NapChart
-This application was generated using JHipster 4.14.3, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.3](http://www.jhipster.tech/documentation-archive/v4.14.3).
+This application helps people catalogue and analyze their sleeping habits.
+
+You can find documentation and help for JHipster at [http://www.jhipster.tech/documentation-archive/v4.14.3](http://www.jhipster.tech/documentation-archive/v4.14.3).
+
+## Tools
+The charts shown on this site are created using [PrimeNG](https://www.primefaces.org/primeng/#/)
 
 ## Development
 
