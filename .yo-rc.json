@@ -32,7 +32,8 @@
       "protractor"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuDeployType": "git"
   },
   "generator-jhipster-pages": {
     "promptValues": {
