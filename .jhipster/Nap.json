@@ -2,12 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "relationshipName": "user",
             "otherEntityName": "user",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "nap"
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -30,12 +28,8 @@
             "fieldValidateRulesMax": 10
         },
         {
-            "fieldName": "date",
+            "fieldName": "localDate",
             "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "exercise",
-            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20180417062358",

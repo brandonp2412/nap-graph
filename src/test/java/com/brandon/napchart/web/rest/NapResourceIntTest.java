@@ -47,11 +47,8 @@ public class NapResourceIntTest {
     private static final Integer DEFAULT_RATING = 0;
     private static final Integer UPDATED_RATING = 1;
 
-    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
-
-    private static final Boolean DEFAULT_EXERCISE = false;
-    private static final Boolean UPDATED_EXERCISE = true;
+    private static final LocalDate DEFAULT_LOCAL_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LOCAL_DATE = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private NapRepository napRepository;
@@ -96,8 +93,7 @@ public class NapResourceIntTest {
         Nap nap = new Nap()
             .duration(DEFAULT_DURATION)
             .rating(DEFAULT_RATING)
-            .date(DEFAULT_DATE)
-            .exercise(DEFAULT_EXERCISE);
+            .localDate(DEFAULT_LOCAL_DATE);
         return nap;
     }
 
@@ -123,8 +119,7 @@ public class NapResourceIntTest {
         Nap testNap = napList.get(napList.size() - 1);
         assertThat(testNap.getDuration()).isEqualTo(DEFAULT_DURATION);
         assertThat(testNap.getRating()).isEqualTo(DEFAULT_RATING);
-        assertThat(testNap.getDate()).isEqualTo(DEFAULT_DATE);
-        assertThat(testNap.isExercise()).isEqualTo(DEFAULT_EXERCISE);
+        assertThat(testNap.getLocalDate()).isEqualTo(DEFAULT_LOCAL_DATE);
     }
 
     @Test
@@ -195,8 +190,7 @@ public class NapResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(nap.getId().intValue())))
             .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION)))
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING)))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].exercise").value(hasItem(DEFAULT_EXERCISE.booleanValue())));
+            .andExpect(jsonPath("$.[*].localDate").value(hasItem(DEFAULT_LOCAL_DATE.toString())));
     }
 
     @Test
@@ -212,8 +206,7 @@ public class NapResourceIntTest {
             .andExpect(jsonPath("$.id").value(nap.getId().intValue()))
             .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION))
             .andExpect(jsonPath("$.rating").value(DEFAULT_RATING))
-            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
-            .andExpect(jsonPath("$.exercise").value(DEFAULT_EXERCISE.booleanValue()));
+            .andExpect(jsonPath("$.localDate").value(DEFAULT_LOCAL_DATE.toString()));
     }
 
     @Test
@@ -238,8 +231,7 @@ public class NapResourceIntTest {
         updatedNap
             .duration(UPDATED_DURATION)
             .rating(UPDATED_RATING)
-            .date(UPDATED_DATE)
-            .exercise(UPDATED_EXERCISE);
+            .localDate(UPDATED_LOCAL_DATE);
 
         restNapMockMvc.perform(put("/api/naps")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -252,8 +244,7 @@ public class NapResourceIntTest {
         Nap testNap = napList.get(napList.size() - 1);
         assertThat(testNap.getDuration()).isEqualTo(UPDATED_DURATION);
         assertThat(testNap.getRating()).isEqualTo(UPDATED_RATING);
-        assertThat(testNap.getDate()).isEqualTo(UPDATED_DATE);
-        assertThat(testNap.isExercise()).isEqualTo(UPDATED_EXERCISE);
+        assertThat(testNap.getLocalDate()).isEqualTo(UPDATED_LOCAL_DATE);
     }
 
     @Test

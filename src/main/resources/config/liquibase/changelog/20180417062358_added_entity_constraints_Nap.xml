@@ -7,7 +7,8 @@
         Added the constraints for entity Nap.
     -->
     <changeSet id="20180417062358-2" author="jhipster">
-        
+
+        <validCheckSum>ANY</validCheckSum>
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="nap"
                                  constraintName="fk_nap_user_id"

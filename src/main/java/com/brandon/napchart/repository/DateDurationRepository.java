@@ -1,8 +1,6 @@
 package com.brandon.napchart.repository;
 
 import com.brandon.napchart.domain.DateDuration;
-import com.brandon.napchart.domain.User;
-import com.brandon.napchart.domain.enumeration.DayType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,8 +18,7 @@ import java.time.LocalDate;
 @Repository
 public interface DateDurationRepository extends JpaRepository<DateDuration, LocalDate> {
     @Query("select dateDuration from DateDuration dateDuration " +
-        "inner join User user on user.login = dateDuration.login " +
-        "where user.login = :login " +
-        "order by dateDuration.date, dateDuration.totalDuration")
+        "where dateDuration.login = :login " +
+        "order by dateDuration.localDate, dateDuration.totalDuration")
     Page<DateDuration> findAllByLogin(@Param("login") String login, Pageable pageable);
 }

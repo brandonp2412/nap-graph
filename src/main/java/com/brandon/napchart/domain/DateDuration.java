@@ -19,7 +19,7 @@ public class DateDuration implements Serializable{
     private String id;
 
     @Column
-    private LocalDate date;
+    private LocalDate localDate;
 
     @Column
     private Integer totalDuration;
@@ -43,12 +43,12 @@ public class DateDuration implements Serializable{
         this.totalDuration = totalDuration;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
     public void setDay(LocalDate date) {
-        this.date = date;
+        this.localDate = date;
     }
 
     public String getId() {

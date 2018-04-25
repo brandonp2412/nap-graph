@@ -32,6 +32,8 @@
       "protractor"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuDeployType": "jar",
+    "herokuAppName": "nap-chart"
   }
 }

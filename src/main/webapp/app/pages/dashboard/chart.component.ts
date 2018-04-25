@@ -46,7 +46,7 @@ export class ChartComponent implements OnInit {
 
     private setDateData(dateDurations) {
         this.dateData = {
-            labels: dateDurations.map((dayByDuration) => dayByDuration.date),
+            labels: dateDurations.map((dayByDuration) => dayByDuration.localDate),
             datasets: [{
                 label: 'Date by Duration',
                 data: dateDurations.map((dayByDuration) => dayByDuration.totalDuration),

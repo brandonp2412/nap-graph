@@ -63,8 +63,8 @@ export class NapService {
      */
     private convertItemFromServer(nap: Nap): Nap {
         const copy: Nap = Object.assign({}, nap);
-        copy.date = this.dateUtils
-            .convertLocalDateFromServer(nap.date);
+        copy.localDate = this.dateUtils
+            .convertLocalDateFromServer(nap.localDate);
         return copy;
     }
 
@@ -73,8 +73,8 @@ export class NapService {
      */
     private convert(nap: Nap): Nap {
         const copy: Nap = Object.assign({}, nap);
-        copy.date = this.dateUtils
-            .convertLocalDateToServer(nap.date);
+        copy.localDate = this.dateUtils
+            .convertLocalDateToServer(nap.localDate);
         return copy;
     }
 }

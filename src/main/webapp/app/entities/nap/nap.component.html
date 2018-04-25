@@ -31,7 +31,7 @@
                 <td *jhiHasAnyAuthority="'ROLE_ADMIN'"><a [routerLink]="['../nap', nap.id ]">{{nap.id}}</a></td>
                 <td>{{nap.duration}}</td>
                 <td>{{nap.rating}}</td>
-                <td>{{nap.date | date:'mediumDate'}}</td>
+                <td>{{nap.localDate | date:'mediumDate'}}</td>
                 <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
                     {{nap.user?.login}}
                 </td>

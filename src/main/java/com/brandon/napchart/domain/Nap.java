@@ -21,7 +21,8 @@ public class Nap implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @NotNull
@@ -34,14 +35,10 @@ public class Nap implements Serializable {
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
-    @Column(name = "date")
-    private LocalDate date;
+    @Column(name = "local_date")
+    private LocalDate localDate;
 
-    @Column(name = "exercise")
-    private Boolean exercise;
-
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -79,30 +76,17 @@ public class Nap implements Serializable {
         this.rating = rating;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
-    public Nap date(LocalDate date) {
-        this.date = date;
+    public Nap localDate(LocalDate localDate) {
+        this.localDate = localDate;
         return this;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Boolean isExercise() {
-        return exercise;
-    }
-
-    public Nap exercise(Boolean exercise) {
-        this.exercise = exercise;
-        return this;
-    }
-
-    public void setExercise(Boolean exercise) {
-        this.exercise = exercise;
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 
     public User getUser() {
@@ -145,8 +129,7 @@ public class Nap implements Serializable {
             "id=" + getId() +
             ", duration=" + getDuration() +
             ", rating=" + getRating() +
-            ", date='" + getDate() + "'" +
-            ", exercise='" + isExercise() + "'" +
+            ", localDate='" + getLocalDate() + "'" +
             "}";
     }
 }

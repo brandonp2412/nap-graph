@@ -54,7 +54,7 @@
             <label class="form-control-label" for="field_date">Date</label>
             <div class="input-group">
                 <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker
-                       #dateDp="ngbDatepicker" [(ngModel)]="nap.date" required/>
+                       #dateDp="ngbDatepicker" [(ngModel)]="nap.localDate" required/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><i class="fa fa-calendar">
                         </i></button>

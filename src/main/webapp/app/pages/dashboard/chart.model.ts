@@ -10,7 +10,7 @@ export class DurationRating {
 
 export class DateDuration {
     constructor(
-        public date?: Date,
+        public localDate?: Date,
         public duration?: number
     ) {
     }

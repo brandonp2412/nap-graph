@@ -1,8 +1,7 @@
 entity Nap {
     duration Integer required,
     rating Integer required min(0) max(10),
-    date LocalDate,
-    exercise Boolean
+    localDate LocalDate,
 }
 
 relationship ManyToOne {
