@@ -8,8 +8,10 @@
 
 <div *ngIf="!isAuthenticated()">
     <div class="alert alert-warning">
-        <span>If you want to </span>
-        <a class="alert-link" (click)="login()">sign in</a> then
+        If you already have an account, then <a class="alert-link" (click)="login()">sign in</a>
+    </div>
+    <div class="alert alert-warning">
+        <span>You don't have an account yet?</span>
         <a class="alert-link" routerLink="register">Register a new account</a>
     </div>
 </div>

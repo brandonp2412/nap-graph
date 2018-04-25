@@ -33,6 +33,18 @@ export class ChartComponent implements OnInit {
         );
     }
 
+    hasData() {
+        return this.dateData.datasets.length === 1 || this.dateData.datasets.length === 1;
+    }
+
+    hasDateData() {
+        return this.dateData.datasets.length === 1;
+    }
+
+    hasDurationData() {
+        return this.durationData.datasets.length === 1;
+    }
+
     private setDateData(dateDurations) {
         this.dateData = {
             labels: dateDurations.map((dayByDuration) => dayByDuration.date),
@@ -60,5 +72,4 @@ export class ChartComponent implements OnInit {
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }
-
 }

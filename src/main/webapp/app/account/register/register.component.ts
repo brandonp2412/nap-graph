@@ -4,6 +4,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Register } from './register.service';
 import { LoginModalService, EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from '../../shared';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-register',
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         private loginModalService: LoginModalService,
         private registerService: Register,
         private elementRef: ElementRef,
-        private renderer: Renderer
+        private renderer: Renderer,
     ) {
     }
 

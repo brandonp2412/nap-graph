@@ -4,15 +4,15 @@
         <button class="btn btn-outline-primary" routerLink="/nap">Set my Data</button>
     </div>
     <hr>
-    <div class="row" *ngIf="dateData.datasets.length == 1 || dateData.datasets.length == 1">
-        <div class="col-sm-6" *ngIf="dateData.datasets.length == 1">
+    <div class="row" *ngIf="hasData()">
+        <div class="col-sm-6" *ngIf="hasDateData()">
             <p-chart type="line" [data]="dateData" [options]="optionsDate"></p-chart>
         </div>
-        <div class="col-sm-6" *ngIf="durationData.datasets.length == 1">
+        <div class="col-sm-6" *ngIf="hasDurationData()">
             <p-chart type="line" [data]="durationData" [options]="optionsDuration"></p-chart>
         </div>
     </div>
-    <div *ngIf="dateData.datasets.length == 0 && durationData.datasets.length == 0" align="center">
+    <div *ngIf="!hasData()" align="center">
         <h2>Looks like you have no data, try <a routerLink="/nap">setting</a> it first, then come back</h2>
     </div>
 </div>

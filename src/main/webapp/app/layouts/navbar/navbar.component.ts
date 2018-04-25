@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -6,6 +6,7 @@ import { ProfileService } from '../profiles/profile.service';
 import { Principal, LoginModalService, LoginService } from '../../shared';
 
 import { VERSION } from '../../app.constants';
+import { JhiEventManager } from 'ng-jhipster';
 
 @Component({
     selector: 'jhi-navbar',
@@ -21,13 +22,15 @@ export class NavbarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
+    account: any;
 
     constructor(
         private loginService: LoginService,
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private eventManager: JhiEventManager
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -38,6 +41,8 @@ export class NavbarComponent implements OnInit {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
+        this.principal.identity().then((account) => this.account = account);
+        this.registerAuthenticationSuccess();
     }
 
     collapseNavbar() {
@@ -52,7 +57,16 @@ export class NavbarComponent implements OnInit {
         this.modalRef = this.loginModalService.open();
     }
 
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', () => {
+            this.principal.identity().then((account) => {
+                this.account = account;
+            });
+        });
+    }
+
     logout() {
+        delete this.account;
         this.collapseNavbar();
         this.loginService.logout();
         this.router.navigate(['']);
