@@ -13,11 +13,8 @@ import { Principal } from '../../shared';
     templateUrl: './chart.component.html'
 })
 export class ChartComponent implements OnInit {
-    account: any;
     durationData: any;
     dateData: any;
-    durationRatings: DurationRating[];
-    dateDurations: DateDuration[];
     _hasDateData: boolean;
     _hasDurationData: boolean;
     optionsDate = {scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]}};
@@ -28,15 +25,10 @@ export class ChartComponent implements OnInit {
         private chartService: ChartService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
-        private eventManager: JhiEventManager,
-        private principal: Principal
     ) {
     }
 
     ngOnInit() {
-        this.principal.identity().then((account) => {
-            this.account = account;
-        });
         this.chartService.getDayDurations().subscribe(
             (res: HttpResponse<DateDuration[]>) => this.onDateSuccess(res.body),
             (res: HttpErrorResponse) => this.onError(res.message));
@@ -87,13 +79,11 @@ export class ChartComponent implements OnInit {
     }
 
     private onDateSuccess(dayDurations: DateDuration[]) {
-        this.dateDurations = dayDurations;
         this.setDayData(dayDurations);
         this._hasDateData = dayDurations.length > 0;
     }
 
     private onDurationSuccess(durationRatings: DurationRating[] | null) {
-        this.durationRatings = durationRatings;
         this.setDurationData(durationRatings);
         this._hasDurationData = durationRatings.length > 0;
     }
