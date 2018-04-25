@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProfileService } from '../profiles/profile.service';
-import { LoginModalService, LoginService, Principal } from '../../shared';
+import { Principal, LoginModalService, LoginService } from '../../shared';
 
 import { VERSION } from '../../app.constants';
 

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -49,8 +49,7 @@ export class NapDeletePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private napPopupService: NapPopupService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

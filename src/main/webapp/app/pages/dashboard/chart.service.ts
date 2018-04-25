@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_API_URL } from '../../app.constants';
 
-import { DateDuration, DurationRating } from './chart.model';
+import { Chart, DateDuration, DurationRating } from './chart.model';
 import { createRequestOption } from '../../shared';
 
 export type DayArrayResponseType = HttpResponse<DateDuration[]>;
@@ -44,15 +44,12 @@ export class ChartService {
         return Object.assign(new DurationRating(), json);
     }
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) { }
 
     getDayDurations(req?: any): Observable<HttpResponse<DateDuration[]>> {
         const options = createRequestOption(req);
-        return this.http.get<DateDuration[]>(`${SERVER_API_URL}/api/date-durations/user`, {
-            params: options,
-            observe: 'response'
-        }).map((res: HttpResponse<DateDuration[]>) => ChartService.convertDayArrayResponse(res));
+        return this.http.get<DateDuration[]>(`${SERVER_API_URL}/api/date-durations/user`, {params: options,
+            observe: 'response'}).map((res: HttpResponse<DateDuration[]>) => ChartService.convertDayArrayResponse(res));
     }
 
     getDurationRatings(req?: any): Observable<HttpResponse<DurationRating[]>> {

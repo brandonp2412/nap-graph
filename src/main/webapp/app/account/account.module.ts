@@ -1,22 +1,22 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NapChartSharedModule } from '../shared';
 
 import {
-    accountState,
-    ActivateComponent,
-    ActivateService,
-    PasswordComponent,
-    PasswordResetFinishComponent,
-    PasswordResetFinishService,
-    PasswordResetInitComponent,
-    PasswordResetInitService,
-    PasswordService,
-    PasswordStrengthBarComponent,
     Register,
+    ActivateService,
+    PasswordService,
+    PasswordResetInitService,
+    PasswordResetFinishService,
+    PasswordStrengthBarComponent,
     RegisterComponent,
-    SettingsComponent
+    ActivateComponent,
+    PasswordComponent,
+    PasswordResetInitComponent,
+    PasswordResetFinishComponent,
+    SettingsComponent,
+    accountState
 } from './';
 
 @NgModule({
@@ -42,5 +42,4 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NapChartAccountModule {
-}
+export class NapChartAccountModule {}

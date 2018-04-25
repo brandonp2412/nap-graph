@@ -1,19 +1,19 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NapChartSharedModule } from '../../shared';
 import { NapChartAdminModule } from '../../admin/admin.module';
 import {
+    NapService,
+    NapPopupService,
     NapComponent,
-    NapDeleteDialogComponent,
-    NapDeletePopupComponent,
     NapDetailComponent,
     NapDialogComponent,
     NapPopupComponent,
-    napPopupRoute,
-    NapPopupService,
+    NapDeletePopupComponent,
+    NapDeleteDialogComponent,
     napRoute,
-    NapService,
+    napPopupRoute,
 } from './';
 
 const ENTITY_STATES = [
@@ -48,5 +48,4 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NapChartNapModule {
-}
+export class NapChartNapModule {}

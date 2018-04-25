@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { JhiAlertService, JhiEventManager, JhiParseLinks } from 'ng-jhipster';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
+import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { DateDuration, DurationRating } from './chart.model';
+import { Chart, DateDuration, DurationRating } from './chart.model';
 import { ChartService } from './chart.service';
 import { Principal } from '../../shared';
 
@@ -19,12 +21,8 @@ export class ChartComponent implements OnInit {
     _hasDateData: boolean;
     _hasDurationData: boolean;
     optionsDate = {scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]}};
-    optionsDuration = {
-        scales: {
-            yAxes: [{scaleLabel: {display: true, labelString: 'Rating (out of 10)'}}],
-            xAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]
-        }
-    };
+    optionsDuration = {scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Rating (out of 10)'}}],
+        xAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]}};
 
     constructor(
         private chartService: ChartService,

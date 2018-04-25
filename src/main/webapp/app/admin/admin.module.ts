@@ -1,34 +1,34 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { NapChartSharedModule } from '../shared';
+/* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
+
 import {
     adminState,
     AuditsComponent,
-    AuditsService,
-    JhiConfigurationComponent,
-    JhiConfigurationService,
-    JhiDocsComponent,
-    JhiHealthCheckComponent,
-    JhiHealthModalComponent,
-    JhiHealthService,
-    JhiMetricsMonitoringComponent,
-    JhiMetricsMonitoringModalComponent,
-    JhiMetricsService,
-    LogsComponent,
-    LogsService,
-    UserDeleteDialogComponent,
-    UserDialogComponent,
     UserMgmtComponent,
-    UserMgmtDeleteDialogComponent,
+    UserDialogComponent,
+    UserDeleteDialogComponent,
     UserMgmtDetailComponent,
     UserMgmtDialogComponent,
-    UserModalService,
+    UserMgmtDeleteDialogComponent,
+    LogsComponent,
+    JhiMetricsMonitoringModalComponent,
+    JhiMetricsMonitoringComponent,
+    JhiHealthModalComponent,
+    JhiHealthCheckComponent,
+    JhiConfigurationComponent,
+    JhiDocsComponent,
+    AuditsService,
+    JhiConfigurationService,
+    JhiHealthService,
+    JhiMetricsService,
+    LogsService,
+    UserResolvePagingParams,
     UserResolve,
-    UserResolvePagingParams
+    UserModalService
 } from './';
-
-/* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
 
 @NgModule({
     imports: [
@@ -70,5 +70,4 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NapChartAdminModule {
-}
+export class NapChartAdminModule {}

@@ -1,7 +1,6 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { NapChartNapModule } from './nap/nap.module';
-
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -14,5 +13,4 @@ import { NapChartNapModule } from './nap/nap.module';
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NapChartEntityModule {
-}
+export class NapChartEntityModule {}

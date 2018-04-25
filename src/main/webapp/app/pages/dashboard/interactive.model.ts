@@ -1,4 +1,0 @@
-export class Interactive {
-    constructor() {
-    }
-}

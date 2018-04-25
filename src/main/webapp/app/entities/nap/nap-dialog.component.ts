@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Nap } from './nap.model';
 import { NapPopupService } from './nap-popup.service';
@@ -34,9 +34,7 @@ export class NapDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.userService.query()
-            .subscribe((res: HttpResponse<User[]>) => {
-                this.users = res.body;
-            }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -60,7 +58,7 @@ export class NapDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Nap) {
-        this.eventManager.broadcast({name: 'napListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'napListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -89,12 +87,11 @@ export class NapPopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private napPopupService: NapPopupService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if (params['id']) {
+            if ( params['id'] ) {
                 this.napPopupService
                     .open(NapDialogComponent as Component, params['id']);
             } else {

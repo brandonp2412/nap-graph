@@ -10,11 +10,10 @@ const LAYOUT_ROUTES = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(LAYOUT_ROUTES, {useHash: true, enableTracing: DEBUG_INFO_ENABLED})
+        RouterModule.forRoot(LAYOUT_ROUTES, { useHash: true , enableTracing: DEBUG_INFO_ENABLED })
     ],
     exports: [
         RouterModule
     ]
 })
-export class NapChartAppRoutingModule {
-}
+export class NapChartAppRoutingModule {}

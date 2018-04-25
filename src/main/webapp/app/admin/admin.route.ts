@@ -7,8 +7,8 @@ import {
     healthRoute,
     logsRoute,
     metricsRoute,
-    userDialogRoute,
-    userMgmtRoute
+    userMgmtRoute,
+    userDialogRoute
 } from './';
 
 import { UserRouteAccessService } from '../shared';

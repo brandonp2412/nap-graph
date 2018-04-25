@@ -1,19 +1,19 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import {
-    AccountService,
-    AuthServerProvider,
-    CSRFService,
-    HasAnyAuthorityDirective,
-    JhiLoginModalComponent,
-    LoginModalService,
-    LoginService,
-    NapChartSharedCommonModule,
     NapChartSharedLibsModule,
-    Principal,
-    StateStorageService,
+    NapChartSharedCommonModule,
+    CSRFService,
+    AuthServerProvider,
+    AccountService,
     UserService,
+    StateStorageService,
+    LoginService,
+    LoginModalService,
+    JhiLoginModalComponent,
+    Principal,
+    HasAnyAuthorityDirective,
 } from './';
 
 @NgModule({
@@ -46,5 +46,4 @@ import {
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export class NapChartSharedModule {
-}
+export class NapChartSharedModule {}

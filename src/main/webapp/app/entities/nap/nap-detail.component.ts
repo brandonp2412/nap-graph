@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
@@ -37,7 +37,6 @@ export class NapDetailComponent implements OnInit, OnDestroy {
                 this.nap = napResponse.body;
             });
     }
-
     previousState() {
         window.history.back();
     }

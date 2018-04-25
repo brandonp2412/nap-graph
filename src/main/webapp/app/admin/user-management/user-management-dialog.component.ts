@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { UserModalService } from './user-modal.service';
-import { User, UserService } from '../../shared';
+import {  User, UserService } from '../../shared';
 
 @Component({
     selector: 'jhi-user-mgmt-dialog',
@@ -22,8 +22,7 @@ export class UserMgmtDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private userService: UserService,
         private eventManager: JhiEventManager
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -48,7 +47,7 @@ export class UserMgmtDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result) {
-        this.eventManager.broadcast({name: 'userListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'userListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result.body);
     }
@@ -69,12 +68,11 @@ export class UserDialogComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private userModalService: UserModalService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if (params['login']) {
+            if ( params['login'] ) {
                 this.userModalService.open(UserMgmtDialogComponent as Component, params['login']);
             } else {
                 this.userModalService.open(UserMgmtDialogComponent as Component);

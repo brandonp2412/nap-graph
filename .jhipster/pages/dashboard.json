@@ -5,13 +5,8 @@
             "pageType": "clientOnly",
             "pageGlyphIcon": "bar-chart",
             "fields": []
-        },
-        {
-            "pageName": "interactive",
-            "pageType": "clientOnly",
-            "fields": []
         }
     ],
     "pageSetGlyphIcon": "fw fa-tachomete",
-    "changelogDate": "20180422045310"
+    "changelogDate": "20180421032348"
 }
