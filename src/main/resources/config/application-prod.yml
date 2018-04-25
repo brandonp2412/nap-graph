@@ -41,7 +41,7 @@ spring:
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.NoDefaultJCacheRegionFactory
     mail:
-        host: localhost
+        host: aspmx.l.google.com
         port: 25
         username:
         password:
@@ -101,7 +101,7 @@ jhipster:
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: NapChart@localhost
-        base-url: http://my-server-url-to-change # Modify according to your server's URL
+        base-url: https://nap-chart.herokuapp.com # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:
