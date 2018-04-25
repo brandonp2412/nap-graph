@@ -1,27 +1,27 @@
 package com.brandon.napchart.domain;
 
-import javax.persistence.Entity;
-
-import com.brandon.napchart.domain.enumeration.DayType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
-@Table(name = "date_duration")
+@Table
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class DateDuration implements Serializable{
     @Id
-    @Column(name = "date")
+    @Column
+    private String id;
+
+    @Column
     private LocalDate date;
 
-    @Column(name = "total_duration")
+    @Column
     private Integer totalDuration;
 
     @Column
@@ -49,5 +49,13 @@ public class DateDuration implements Serializable{
 
     public void setDay(LocalDate date) {
         this.date = date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

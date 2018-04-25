@@ -19,5 +19,9 @@ import java.time.LocalDate;
 @SuppressWarnings("unused")
 @Repository
 public interface DateDurationRepository extends JpaRepository<DateDuration, LocalDate> {
-    Page<DateDuration> findAllByLogin(String login, Pageable pageable);
+    @Query("select dateDuration from DateDuration dateDuration " +
+        "inner join User user on user.login = dateDuration.login " +
+        "where user.login = :login " +
+        "order by dateDuration.date, dateDuration.totalDuration")
+    Page<DateDuration> findAllByLogin(@Param("login") String login, Pageable pageable);
 }

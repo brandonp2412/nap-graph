@@ -17,5 +17,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface DurationRatingRepository extends JpaRepository<DurationRating, Integer> {
-    Page<DurationRating> findAllByLogin(String login, Pageable pageable);
+    @Query("select durationRating from DurationRating durationRating " +
+        "inner join User user on user.login = durationRating.login " +
+        "where durationRating.login = :login " +
+        "order by durationRating.duration, durationRating.averageRating")
+    Page<DurationRating> findAllByLogin(@Param("login") String login, Pageable pageable);
 }
