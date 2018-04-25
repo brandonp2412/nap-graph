@@ -14,14 +14,14 @@
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
-    "prodDatabaseType": "postgresql",
+    "prodDatabaseType": "mysql",
     "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "822f54ba3d59f0ab2fa60106f5de2e373bc4b914",
+    "jwtSecretKey": "24627589e10f1093269816a445dfb2abe5d5f007",
     "clientFramework": "angularX",
     "useSass": false,
     "clientPackageManager": "yarn",
@@ -32,6 +32,13 @@
       "protractor"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuDeployType": "git"
+  },
+  "generator-jhipster-pages": {
+    "promptValues": {
+      "pageSet": "dashboard",
+      "pageType": "clientOnly"
+    }
   }
 }

@@ -5,7 +5,7 @@ entity Nap {
     exercise Boolean
 }
 
-relationship OneToOne {
+relationship ManyToOne {
     Nap{user} to User
 }
 
