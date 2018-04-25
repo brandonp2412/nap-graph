@@ -19,7 +19,7 @@ describe('Nap e2e test', () => {
         navBarPage.goToEntity('nap');
         napComponentsPage = new NapComponentsPage();
         expect(napComponentsPage.getTitle())
-            .toMatch(/Naps/);
+            .toMatch(/My Naps/);
 
     });
 
@@ -59,8 +59,8 @@ describe('Nap e2e test', () => {
 });
 
 export class NapComponentsPage {
-    createButton = element(by.css('.jh-create-entity'));
-    title = element.all(by.css('jhi-nap div h2 span')).first();
+    createButton = element(by.css('#create-nap'));
+    title = element.all(by.css('#title'));
 
     clickOnCreateButton() {
         return this.createButton.click();

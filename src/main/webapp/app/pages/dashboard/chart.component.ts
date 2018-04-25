@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { DateDuration, DurationRating } from './chart.model';
 import { ChartService } from './chart.service';
@@ -18,7 +18,6 @@ export class ChartComponent implements OnInit {
 
     constructor(
         private chartService: ChartService,
-        private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
     ) {
     }

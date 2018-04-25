@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_API_URL } from '../../app.constants';
 
-import { Chart, DateDuration, DurationRating } from './chart.model';
+import { DateDuration, DurationRating } from './chart.model';
 import { createRequestOption } from '../../shared';
 
 export type DayArrayResponseType = HttpResponse<DateDuration[]>;

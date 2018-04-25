@@ -16,8 +16,8 @@ describe('account', () => {
     });
 
     it('should fail to login with bad password', () => {
-        const expect1 = /Welcome, Sleepy Head!/;
-        element.all(by.css('h1')).first().getText().then((value) => {
+        const expect1 = /If you already have an account, then sign in/;
+        element.all(by.css('#please-sign-in')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
         signInPage = navBarPage.getSignInPage();
@@ -42,8 +42,8 @@ describe('account', () => {
 
         browser.waitForAngular();
 
-        const expect2 = /You are logged in as user "admin"/;
-        element.all(by.css('.alert-success span')).getText().then((value) => {
+        const expect2 = /Welcome, Sleepy Head!/;
+        element.all(by.css('#welcome-message')).getText().then((value) => {
             expect(value).toMatch(expect2);
         });
     });

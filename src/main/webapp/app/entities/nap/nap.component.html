@@ -1,8 +1,8 @@
 <div>
     <div align="center">
-        <h2>My Naps</h2>
+        <h2 id="title">My Naps</h2>
         <button class="btn btn-outline-secondary" routerLink="/dashboard-chart">See my Charts</button>
-        <button class="btn btn-primary jh-create-entity" [routerLink]="['/', { outlets: { popup: ['nap-new'] } }]">
+        <button class="btn btn-primary jh-create-entity" [routerLink]="['/', { outlets: { popup: ['nap-new'] } }]" id="create-nap">
             <span class="fa fa-plus"></span>
             Create New Nap
         </button>

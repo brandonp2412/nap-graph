@@ -5,8 +5,6 @@ import { NapChartSharedModule } from '../../shared';
 import {
     ChartService,
     ChartComponent,
-    InteractiveService,
-    InteractiveComponent,
     DashboardRoute,
 } from './';
 import { ChartModule } from 'primeng/chart';
@@ -23,15 +21,12 @@ const PAGE_SET_STATES = [
     ],
     declarations: [
     ChartComponent,
-    InteractiveComponent,
 ],
     entryComponents: [
     ChartComponent,
-    InteractiveComponent,
 ],
     providers: [
     ChartService,
-    InteractiveService,
 ],
 schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

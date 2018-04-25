@@ -1,5 +1,5 @@
 <div *ngIf="isAuthenticated()">
-    <h1 align="center">Welcome, Sleepy Head!</h1>
+    <h1 align="center" id="welcome-message">Welcome, Sleepy Head!</h1>
     <div align="center">
         <button type="button" class="btn btn-outline-secondary" routerLink="dashboard-chart">See my charts</button>
         <button type="button" class="btn btn-outline-primary" routerLink="nap">Set my Data</button>
@@ -7,10 +7,10 @@
 </div>
 
 <div *ngIf="!isAuthenticated()">
-    <div class="alert alert-warning">
+    <div class="alert alert-warning" id="please-sign-in">
         If you already have an account, then <a class="alert-link" (click)="login()">sign in</a>
     </div>
-    <div class="alert alert-warning">
+    <div class="alert alert-warning" id="please-register">
         <span>You don't have an account yet?</span>
         <a class="alert-link" routerLink="register">Register a new account</a>
     </div>
