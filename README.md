@@ -9,7 +9,7 @@ You can find documentation and help for JHipster at [http://www.jhipster.tech/do
 ![](https://github.com/brandonp2412/nap-chart/blob/master/src/main/webapp/content/images/CreateOrEditNap.png)
 
 ## Tools
-The charts shown on this site are created using [PrimeNG](https://www.primefaces.org/primeng/#/)
+The charts shown on this site are created using [PrimeNG](https://www.primefaces.org/primeng/#/).
 
 ## Development
 
