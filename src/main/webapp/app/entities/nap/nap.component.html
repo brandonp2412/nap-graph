@@ -1,10 +1,12 @@
 <div>
-    <h2>My Naps</h2>
-    <button class="btn btn-outline-primary" routerLink="/dashboard-chart">My Charts</button>
-    <button class="btn btn-primary jh-create-entity" [routerLink]="['/', { outlets: { popup: ['nap-new'] } }]">
-        <span class="fa fa-plus"></span>
-        Create New Nap
-    </button>
+    <div align="center">
+        <h2>My Naps</h2>
+        <button class="btn btn-outline-secondary" routerLink="/dashboard-chart">See my Charts</button>
+        <button class="btn btn-primary jh-create-entity" [routerLink]="['/', { outlets: { popup: ['nap-new'] } }]">
+            <span class="fa fa-plus"></span>
+            Create New Nap
+        </button>
+    </div>
     <jhi-alert></jhi-alert>
     <div class="row">
     </div>

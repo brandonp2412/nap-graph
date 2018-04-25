@@ -1,11 +1,7 @@
 <div>
-    <div class="row">
-        <div class="col-sm-4"><h2>My Charts</h2></div>
-        <div class="col-sm-4">
-            <button type="button" class="btn btn-outline-primary float-right" routerLink="/nap">Set my Data</button>
-        </div>
-        <div class="col-sm-4">
-        </div>
+    <div align="center">
+        <h2>My Charts</h2>
+        <button class="btn btn-outline-primary" routerLink="/nap">Set my Data</button>
     </div>
     <hr>
     <div class="row" *ngIf="dateData.datasets.length == 1 || dateData.datasets.length == 1">
