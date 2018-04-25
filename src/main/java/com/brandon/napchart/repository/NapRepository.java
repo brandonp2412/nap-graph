@@ -21,10 +21,4 @@ public interface NapRepository extends JpaRepository<Nap, Long> {
     @Query("select nap from Nap nap where " +
         "nap.user.login = :login")
     Page<Nap> findAllByUser(@Param("login") String login, Pageable pageable);
-
-    @Query("select nap, avg(nap.rating) from Nap nap inner join " +
-        "User user on user.id = nap.user.id " +
-        "where user.login = :login " +
-        "group by nap.duration, nap.user")
-    ResponseEntity<Nap> findAllAverageRatings(@Param("login") String login);
 }

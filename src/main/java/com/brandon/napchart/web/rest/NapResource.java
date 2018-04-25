@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.AuthenticationException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -104,16 +105,6 @@ public class NapResource {
             .body(result);
     }
 
-    @GetMapping("/naps/average-ratings")
-    @Timed
-    public ResponseEntity<Nap> getAverageRatings() throws Exception {
-        log.debug("REST request to get average ratings for Naps");
-        Optional<String> login = SecurityUtils.getCurrentUserLogin();
-        if (!login.isPresent())
-            throw new Exception("Couldn't find a user to authenticate against");
-        return napRepository.findAllAverageRatings(login.get());
-    }
-
     /**
      * GET  /naps : get all the naps.
      *
@@ -151,10 +142,16 @@ public class NapResource {
      */
     @GetMapping("/naps/{id}")
     @Timed
-    public ResponseEntity<Nap> getNap(@PathVariable Long id) {
+    public ResponseEntity<Nap> getNap(@PathVariable Long id) throws AuthenticationException {
         log.debug("REST request to get Nap : {}", id);
         Nap nap = napRepository.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(nap));
+        Optional<String> login = SecurityUtils.getCurrentUserLogin();
+        if (!login.isPresent())
+            throw new AuthenticationException("User login not found");
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN) &&
+            !nap.getUser().getLogin().equals(login.get()))
+            throw new AuthenticationException("User does not own this Nap");
+        return ResponseUtil.wrapOrNotFound(Optional.of(nap));
     }
 
     /**
@@ -165,8 +162,15 @@ public class NapResource {
      */
     @DeleteMapping("/naps/{id}")
     @Timed
-    public ResponseEntity<Void> deleteNap(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteNap(@PathVariable Long id) throws AuthenticationException {
         log.debug("REST request to delete Nap : {}", id);
+        Optional<String> login = SecurityUtils.getCurrentUserLogin();
+        Nap nap = napRepository.findOne(id);
+        if (!login.isPresent())
+            throw new AuthenticationException("User login not found");
+        if (!nap.getUser().getLogin().equals(login.get()) &&
+            !SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
+            throw new AuthenticationException("User does not own this Nap");
         napRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }

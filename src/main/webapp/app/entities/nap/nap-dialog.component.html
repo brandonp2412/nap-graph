@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!nap.id">
+        <div class="form-group" [hidden]="!nap.id" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="nap.id" readonly />
