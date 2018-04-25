@@ -5,6 +5,7 @@ import { UserRouteAccessService } from '../../shared';
 import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { ChartComponent } from './chart.component';
+import { InteractiveComponent } from './interactive.component';
 export const DashboardRoute: Routes = [
     {
         path: 'dashboard-chart',
@@ -12,6 +13,15 @@ export const DashboardRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Charts'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'dashboard-interactive',
+        component: InteractiveComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Interactives'
         },
         canActivate: [UserRouteAccessService]
     },
