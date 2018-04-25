@@ -3,6 +3,11 @@ This application helps people catalogue and analyze their sleeping habits.
 
 You can find documentation and help for JHipster at [http://www.jhipster.tech/documentation-archive/v4.14.3](http://www.jhipster.tech/documentation-archive/v4.14.3).
 
+# Preview
+![](https://github.com/brandonp2412/nap-chart/blob/master/src/main/webapp/content/images/MyCharts.png)
+![](https://github.com/brandonp2412/nap-chart/blob/master/src/main/webapp/content/images/MyNaps.png)
+![](https://github.com/brandonp2412/nap-chart/blob/master/src/main/webapp/content/images/CreateOrEditNap.png)
+
 ## Tools
 The charts shown on this site are created using [PrimeNG](https://www.primefaces.org/primeng/#/)
 
