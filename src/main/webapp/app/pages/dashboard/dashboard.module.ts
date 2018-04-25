@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 
 import { NapChartSharedModule } from '../../shared';
 import { ChartComponent, ChartService, DashboardRoute, InteractiveComponent, InteractiveService, } from './';
-import { NapChartNapModule } from '../../entities/nap/nap.module';
 
 const PAGE_SET_STATES = [
     ...DashboardRoute,
@@ -12,7 +11,6 @@ const PAGE_SET_STATES = [
 @NgModule({
     imports: [
         NapChartSharedModule,
-        NapChartNapModule,
         RouterModule.forRoot(PAGE_SET_STATES, {useHash: true})
     ],
     declarations: [
