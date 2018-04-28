@@ -1,4 +1,4 @@
-<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+<form name="editForm" role="form" (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
         <h4 class="modal-title" id="myNapLabel">Create or edit a Nap</h4>
@@ -13,7 +13,7 @@
                    [(ngModel)]="nap.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_duration">Duration</label>
+            <label class="form-control-label" for="field_duration">Duration (Hours)</label>
             <input type="number" class="form-control" name="duration" id="field_duration"
                 [(ngModel)]="nap.duration" required/>
             <div [hidden]="!(editForm.controls.duration?.dirty && editForm.controls.duration?.invalid)">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_rating">Rating</label>
+            <label class="form-control-label" for="field_rating">Rating (Out of 10)</label>
             <input type="number" class="form-control" name="rating" id="field_rating"
                 [(ngModel)]="nap.rating" required min="0" max="10"/>
             <div [hidden]="!(editForm.controls.rating?.dirty && editForm.controls.rating?.invalid)">
