@@ -43,6 +43,8 @@ public class CacheConfiguration {
             cm.createCache(com.brandon.napchart.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.brandon.napchart.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.brandon.napchart.domain.Nap.class.getName(), jcacheConfiguration);
+            cm.createCache(com.brandon.napchart.domain.DateDuration.class.getName(), jcacheConfiguration);
+            cm.createCache(com.brandon.napchart.domain.DurationRating.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
