@@ -16,8 +16,8 @@ describe('account', () => {
     });
 
     it('should fail to login with bad password', () => {
-        const expect1 = /If you already have an account, then sign in/;
-        element.all(by.css('#please-sign-in')).first().getText().then((value) => {
+        const expect1 = /Your one-stop shop for analyzing sleep data/;
+        element.all(by.css('#anonymous-welcome')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
         signInPage = navBarPage.getSignInPage();

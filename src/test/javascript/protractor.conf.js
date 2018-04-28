@@ -40,9 +40,10 @@ exports.config = {
             savePath: 'target/reports/e2e',
             consolidateAll: false
         }));
-        jasmine.getEnv().addReporter(new HtmlScreenshotReporter({
-            dest: "target/reports/e2e/screenshots"
-        }));
+        // Screenshots bring the browser into focus
+        // jasmine.getEnv().addReporter(new HtmlScreenshotReporter({
+        //     dest: "target/reports/e2e/screenshots"
+        // }));
     },
 
     useAllAngular2AppRoots: true
