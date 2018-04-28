@@ -4,6 +4,8 @@ import { JhiEventManager} from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
 import { Subscription } from 'rxjs/Subscription';
+import { OPTIONS_DATE, OPTIONS_DURATION } from '../pages/dashboard/chart.options';
+import { SAMPLE_DATE_DURATION, SAMPLE_DURATION_RATING } from './home.sample.data';
 
 @Component({
     selector: 'jhi-home',
@@ -11,32 +13,50 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: [
         'home.css'
     ]
-
 })
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
     eventSubscriber: Subscription;
+    durationData = {labels: [], datasets: []};
+    dateData = {labels: [], datasets: []};
+    optionsDate = OPTIONS_DATE;
+    optionsDuration = OPTIONS_DURATION;
 
     constructor(
         private principal: Principal,
-        private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager) {
+        private loginModalService: LoginModalService) {
     }
 
     ngOnInit() {
-        this.principal.identity().then((account) => {
-            this.account = account;
-        });
-        this.registerAuthenticationSuccess();
+        if (!this.principal.isAuthenticated()) {
+            this.setDateData(SAMPLE_DATE_DURATION);
+            this.setDurationData(SAMPLE_DURATION_RATING);
+        }
     }
 
-    registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', () => {
-            this.principal.identity().then((account) => {
-                this.account = account;
-            });
-        });
+    private setDateData(dateDurations) {
+        this.dateData = {
+            labels: dateDurations.map((dayByDuration) => dayByDuration.localDate),
+            datasets: [{
+                label: 'Date by Duration',
+                data: dateDurations.map((dayByDuration) => dayByDuration.totalDuration),
+                fill: false,
+                borderColor: '#4bc0c0',
+            }]
+        };
+    }
+
+    private setDurationData(durationRatings) {
+        this.durationData = {
+            labels: durationRatings.map((durationByRating) => durationByRating.duration),
+            datasets: [{
+                label: 'Duration by Rating',
+                data: durationRatings.map((durationByRating) => durationByRating.averageRating),
+                fill: false,
+                borderColor: '#565656'
+            }]
+        };
     }
 
     isAuthenticated() {

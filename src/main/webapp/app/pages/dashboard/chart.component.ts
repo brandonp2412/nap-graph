@@ -4,6 +4,7 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { DateDuration, DurationRating } from './chart.model';
 import { ChartService } from './chart.service';
+import { OPTIONS_DATE, OPTIONS_DURATION } from './chart.options';
 
 @Component({
     selector: 'jhi-chart',
@@ -12,9 +13,8 @@ import { ChartService } from './chart.service';
 export class ChartComponent implements OnInit {
     durationData = {labels: [], datasets: []};
     dateData = {labels: [], datasets: []};
-    optionsDate = {scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]}};
-    optionsDuration = {scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Rating (out of 10)'}}],
-        xAxes: [{scaleLabel: {display: true, labelString: 'Duration (Hours)'}}]}};
+    optionsDate = OPTIONS_DATE;
+    optionsDuration = OPTIONS_DURATION;
 
     constructor(
         private chartService: ChartService,
@@ -51,7 +51,7 @@ export class ChartComponent implements OnInit {
                 label: 'Date by Duration',
                 data: dateDurations.map((dayByDuration) => dayByDuration.totalDuration),
                 fill: false,
-                borderColor: '#4bc0c0'
+                borderColor: '#4bc0c0',
             }]
         };
     }

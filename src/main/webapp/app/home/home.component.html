@@ -7,11 +7,16 @@
 </div>
 
 <div *ngIf="!isAuthenticated()">
-    <div class="alert alert-warning" id="please-sign-in">
-        If you already have an account, then <a class="alert-link" (click)="login()">sign in</a>
-    </div>
-    <div class="alert alert-warning" id="please-register">
-        <span>You don't have an account yet?</span>
-        <a class="alert-link" routerLink="register">Register a new account</a>
+    <h2 align="center">Your one-stop shop for analyzing sleep data</h2>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 align="center">Investigate your sleeping habits</h3>
+            <p-chart type="line" [data]="dateData" [options]="optionsDate"></p-chart>
+        </div>
+        <div class="col-sm-6">
+            <h3 align="center">Find the best amount of sleep for you</h3>
+            <p-chart type="line" [data]="durationData" [options]="optionsDuration"></p-chart>
+        </div>
     </div>
 </div>
