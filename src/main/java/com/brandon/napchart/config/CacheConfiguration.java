@@ -1,6 +1,5 @@
 package com.brandon.napchart.config;
 
-import com.brandon.napchart.domain.DateDuration;
 import io.github.jhipster.config.JHipsterProperties;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
@@ -44,8 +43,6 @@ public class CacheConfiguration {
             cm.createCache(com.brandon.napchart.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.brandon.napchart.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.brandon.napchart.domain.Nap.class.getName(), jcacheConfiguration);
-            cm.createCache(DateDuration.class.getName(), jcacheConfiguration);
-            cm.createCache(com.brandon.napchart.domain.DurationRating.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

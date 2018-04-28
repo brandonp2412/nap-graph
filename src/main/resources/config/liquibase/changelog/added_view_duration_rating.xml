@@ -15,7 +15,7 @@
 
     <changeSet author="Brandon Presley" id="createViewDurationRating">
         <createView viewName="duration_rating">
-            select md5(random()::text || clock_timestamp()::text)::uuid as id, duration, avg(cast(rating as float)) as average_rating, u.login
+            select UUID() as id, duration, avg(cast(rating as float)) as average_rating, u.login
             from nap
             inner join jhi_user u on u.id = nap.user_id
             group by duration, u.login
