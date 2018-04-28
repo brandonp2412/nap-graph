@@ -1,5 +1,5 @@
 entity Nap {
-    duration Integer required,
+    duration Float required,
     rating Integer required min(0) max(10),
     localDate LocalDate,
 }

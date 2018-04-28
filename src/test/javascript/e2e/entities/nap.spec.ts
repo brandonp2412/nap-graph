@@ -19,7 +19,7 @@ describe('Nap e2e test', () => {
         navBarPage.goToEntity('nap');
         napComponentsPage = new NapComponentsPage();
         expect(napComponentsPage.getTitle())
-            .toMatch(/My Naps/);
+            .toMatch(/Naps/);
 
     });
 
@@ -37,17 +37,8 @@ describe('Nap e2e test', () => {
         expect(napDialogPage.getDurationInput()).toMatch('5');
         napDialogPage.setRatingInput('5');
         expect(napDialogPage.getRatingInput()).toMatch('5');
-        napDialogPage.setDateInput('2000-12-31');
-        expect(napDialogPage.getDateInput()).toMatch('2000-12-31');
-        napDialogPage.getExerciseInput().isSelected().then((selected) => {
-            if (selected) {
-                napDialogPage.getExerciseInput().click();
-                expect(napDialogPage.getExerciseInput().isSelected()).toBeFalsy();
-            } else {
-                napDialogPage.getExerciseInput().click();
-                expect(napDialogPage.getExerciseInput().isSelected()).toBeTruthy();
-            }
-        });
+        napDialogPage.setLocalDateInput('2000-12-31');
+        expect(napDialogPage.getLocalDateInput()).toMatch('2000-12-31');
         napDialogPage.userSelectLastOption();
         napDialogPage.save();
         expect(napDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -59,8 +50,8 @@ describe('Nap e2e test', () => {
 });
 
 export class NapComponentsPage {
-    createButton = element(by.css('#create-nap'));
-    title = element.all(by.css('#title'));
+    createButton = element(by.css('.jh-create-entity'));
+    title = element.all(by.css('jhi-nap div h2 span')).first();
 
     clickOnCreateButton() {
         return this.createButton.click();
@@ -77,8 +68,7 @@ export class NapDialogPage {
     closeButton = element(by.css('button.close'));
     durationInput = element(by.css('input#field_duration'));
     ratingInput = element(by.css('input#field_rating'));
-    dateInput = element(by.css('input#field_date'));
-    exerciseInput = element(by.css('input#field_exercise'));
+    localDateInput = element(by.css('input#field_localDate'));
     userSelect = element(by.css('select#field_user'));
 
     getModalTitle() {
@@ -101,17 +91,14 @@ export class NapDialogPage {
         return this.ratingInput.getAttribute('value');
     };
 
-    setDateInput = function(date) {
-        this.dateInput.sendKeys(date);
+    setLocalDateInput = function(localDate) {
+        this.localDateInput.sendKeys(localDate);
     };
 
-    getDateInput = function() {
-        return this.dateInput.getAttribute('value');
+    getLocalDateInput = function() {
+        return this.localDateInput.getAttribute('value');
     };
 
-    getExerciseInput = function() {
-        return this.exerciseInput;
-    };
     userSelectLastOption = function() {
         this.userSelect.all(by.tagName('option')).last().click();
     };

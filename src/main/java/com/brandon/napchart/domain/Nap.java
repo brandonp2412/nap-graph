@@ -27,7 +27,7 @@ public class Nap implements Serializable {
 
     @NotNull
     @Column(name = "duration", nullable = false)
-    private Integer duration;
+    private Float duration;
 
     @NotNull
     @Min(value = 0)
@@ -50,16 +50,16 @@ public class Nap implements Serializable {
         this.id = id;
     }
 
-    public Integer getDuration() {
+    public Float getDuration() {
         return duration;
     }
 
-    public Nap duration(Integer duration) {
+    public Nap duration(Float duration) {
         this.duration = duration;
         return this;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Float duration) {
         this.duration = duration;
     }
 

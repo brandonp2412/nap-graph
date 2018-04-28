@@ -19,10 +19,10 @@ public class DurationRating implements Serializable{
     private String id;
 
     @Column
-    private Integer duration;
+    private Float duration;
 
     @Column
-    private Integer averageRating;
+    private Float averageRating;
 
     @Column
     private String login;
@@ -35,19 +35,19 @@ public class DurationRating implements Serializable{
         this.login = login;
     }
 
-    public Integer getDuration() {
+    public Float getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Float duration) {
         this.duration = duration;
     }
 
-    public Integer getAverageRating() {
+    public Float getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(Integer averageRating) {
+    public void setAverageRating(Float averageRating) {
         this.averageRating = averageRating;
     }
 

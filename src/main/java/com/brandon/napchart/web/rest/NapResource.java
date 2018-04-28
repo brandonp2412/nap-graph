@@ -125,11 +125,8 @@ public class NapResource {
     @GetMapping("/naps/user")
     @Timed
     public ResponseEntity<List<Nap>> getAllNapsByUser(Pageable pageable) throws Exception {
-        Optional<String> login = SecurityUtils.getCurrentUserLogin();
-        if (!login.isPresent())
-            throw new Exception("No user to authenticate against");
-        log.debug("REST request to get a page of Naps by user: {}", login);
-        Page<Nap> page = napRepository.findAllByUser(login.get(), pageable);
+        log.debug("REST request to get a page of Naps");
+        Page<Nap> page = napRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/naps/user");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

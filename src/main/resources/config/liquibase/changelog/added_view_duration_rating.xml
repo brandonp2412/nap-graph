@@ -14,10 +14,8 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <changeSet author="Brandon Presley" id="createViewDurationRating">
-        <validCheckSum>ANY</validCheckSum>
-        <createView replaceIfExists="true"
-                    viewName="duration_rating">
-            select md5(random()::text || clock_timestamp()::text)::uuid as id, duration, avg(rating) as average_rating, u.login
+        <createView viewName="duration_rating">
+            select md5(random()::text || clock_timestamp()::text)::uuid as id, duration, avg(cast(rating as double)) as average_rating, u.login
             from nap
             inner join jhi_user u on u.id = nap.user_id
             group by duration, u.login

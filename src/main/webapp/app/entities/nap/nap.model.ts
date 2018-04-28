@@ -6,9 +6,7 @@ export class Nap implements BaseEntity {
         public duration?: number,
         public rating?: number,
         public localDate?: any,
-        public exercise?: boolean,
         public user?: User,
     ) {
-        this.exercise = false;
     }
 }

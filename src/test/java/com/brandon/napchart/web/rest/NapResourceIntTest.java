@@ -41,8 +41,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = NapChartApp.class)
 public class NapResourceIntTest {
 
-    private static final Integer DEFAULT_DURATION = 1;
-    private static final Integer UPDATED_DURATION = 2;
+    private static final Float DEFAULT_DURATION = 1F;
+    private static final Float UPDATED_DURATION = 2F;
 
     private static final Integer DEFAULT_RATING = 0;
     private static final Integer UPDATED_RATING = 1;
@@ -188,7 +188,7 @@ public class NapResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(nap.getId().intValue())))
-            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION)))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.doubleValue())))
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING)))
             .andExpect(jsonPath("$.[*].localDate").value(hasItem(DEFAULT_LOCAL_DATE.toString())));
     }
@@ -204,7 +204,7 @@ public class NapResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(nap.getId().intValue()))
-            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION))
+            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.doubleValue()))
             .andExpect(jsonPath("$.rating").value(DEFAULT_RATING))
             .andExpect(jsonPath("$.localDate").value(DEFAULT_LOCAL_DATE.toString()));
     }

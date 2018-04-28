@@ -22,7 +22,7 @@ public class DateDuration implements Serializable{
     private LocalDate localDate;
 
     @Column
-    private Integer totalDuration;
+    private Float totalDuration;
 
     @Column
     private String login;
@@ -35,11 +35,11 @@ public class DateDuration implements Serializable{
         this.login = login;
     }
 
-    public Integer getTotalDuration() {
+    public Float getTotalDuration() {
         return totalDuration;
     }
 
-    public void setTotalDuration(Integer totalDuration) {
+    public void setTotalDuration(Float totalDuration) {
         this.totalDuration = totalDuration;
     }
 

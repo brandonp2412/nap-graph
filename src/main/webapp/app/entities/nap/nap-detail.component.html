@@ -12,17 +12,13 @@
         <dd>
             <span>{{nap.rating}}</span>
         </dd>
-        <dt><span>Date</span></dt>
+        <dt><span>Local Date</span></dt>
         <dd>
             <span>{{nap.localDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Exercise</span></dt>
-        <dd>
-            <span>{{nap.exercise}}</span>
-        </dd>
         <dt><span>User</span></dt>
         <dd>
-            {{nap.user?.login}}
+            {{nap.user?.id}}
         </dd>
     </dl>
 
