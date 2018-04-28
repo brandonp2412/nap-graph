@@ -14,7 +14,7 @@
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
-    "prodDatabaseType": "postgresql",
+    "prodDatabaseType": "mysql",
     "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
@@ -34,6 +34,6 @@
     "jhiPrefix": "jhi",
     "enableTranslation": false,
     "herokuDeployType": "jar",
-    "herokuAppName": "nap-chart"
+    "herokuAppName": null
   }
 }
