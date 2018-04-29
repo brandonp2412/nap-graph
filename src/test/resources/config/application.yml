@@ -13,6 +13,12 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+eureka:
+    client:
+        enabled: true
+    instance:
+        appname: NapChart
+        instanceId: NapChart:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
@@ -88,7 +94,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 822f54ba3d59f0ab2fa60106f5de2e373bc4b914
+                secret: f13ab5ca4edc43341ceb3378880d469422308b74
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
