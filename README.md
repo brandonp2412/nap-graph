@@ -1,6 +1,8 @@
 # NapChart
 This application helps people catalogue and analyze their sleeping habits.
 
+Check out the live demo at https://nap-chart.herokuapp.com/
+
 You can find documentation and help for JHipster at [http://www.jhipster.tech/documentation-archive/v4.14.3](http://www.jhipster.tech/documentation-archive/v4.14.3).
 
 # Preview
