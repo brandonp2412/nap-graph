@@ -1,4 +1,4 @@
-# NapChart
+# NapGraph
 This application helps people catalogue and analyze their sleeping habits.
 
 Check out the live demo at https://nap-chart.herokuapp.com/
