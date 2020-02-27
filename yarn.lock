@@ -835,9 +835,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
+bootstrap@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.2.tgz#aee2a93472e61c471fc79fb475531dcbc87de326"
+  integrity sha512-3bP609EdMc/8EwgGp8KgpN8HwnR4V4lZ9CTi5pImMrXNxpkw7dK1B05aMwQWpG1ZWmTLlBSN/uzkuz5GsmQNFA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -6742,9 +6743,10 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-primeng@^5.2.4:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/primeng/-/primeng-5.2.4.tgz#79d9b030ea37fdeb23284dcbbca3b89dddc3e91e"
+primeng@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-9.0.0.tgz#f4732d83f49aa8e53843762cfaed27065156869d"
+  integrity sha512-gR9uvEc9/1BXV9tfMt9dggvCAlNZjhrlarbfLPViY6Hqqr588WhOOvU40Gm8rh3sbXkfisuc6Rvhu7ePQXscHA==
 
 private@^0.1.6, private@~0.1.5:
   version "0.1.8"
