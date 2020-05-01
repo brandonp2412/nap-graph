@@ -1,0 +1,76 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - generator-jhipster-pace > generator-jhipster > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > jhipster-core > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > jhipster-core > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > yeoman-generator > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > yeoman-generator > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-environment > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-environment > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > yeoman-generator > async > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > yeoman-generator > async > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-generator > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-generator > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > yeoman-generator > yeoman-environment > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > yeoman-generator > yeoman-environment > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > opencollective > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > opencollective > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > tabtab > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > tabtab > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-generator > async > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-generator > async > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-generator > yeoman-environment > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-generator > yeoman-environment > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pace > generator-jhipster > yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
+    - generator-jhipster-pages > generator-jhipster > yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T03:40:17.402Z'
