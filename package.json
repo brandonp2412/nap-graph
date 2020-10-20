@@ -17,7 +17,7 @@
     "@angular/router": "5.2.0",
     "@ng-bootstrap/ng-bootstrap": "1.0.0",
     "bootstrap": "4.1.2",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.4",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",
     "generator-jhipster-pace": "^0.1.3",
